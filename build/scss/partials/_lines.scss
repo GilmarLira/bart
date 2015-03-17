@@ -1,0 +1,101 @@
+
+// Lines
+// ///////////////////////////////////////////////////////////////
+
+.content-section.lines{
+	@include perspective(1800px);
+	@include perspective-origin(30% 30%);
+	@include transform-style(preserve-3d);
+	@include transform-origin(50% 50%);
+	@include margins(8, 0);
+
+	color: $color-header-background;
+
+	.overlay-svg {	stroke: $color-map-yellow;	}
+
+	.section-content{ 
+		@include media($medium)	{ @include position(2rem 0 0 0); }
+	}
+
+	.list-line-type{
+		height: 17rem;
+
+		@include transform-style(preserve-3d);
+
+		@include media($big)	{
+			@include span-columns(8 of 12);
+			@include position(relative, 3rem 0 0 8rem);
+
+			&:hover{	
+				.item-line-type{ 
+					&:nth-child(1){		@include transform(rotateY(-40deg));}				
+					&:nth-child(2){		@include transform(rotateY(-40deg));}				
+					&:nth-child(3){		@include transform(rotateY(-40deg));}
+					&:nth-child(4){		@include transform(rotateY(-40deg) translateZ(10px));}
+				}
+			}
+		}
+		@include media($medium)	{
+			@include span-columns(8 of 12);
+			@include position(relative, 3rem 0 0 8rem);
+		}
+		@include media($small)	{
+			@include span-columns(6 of 8);
+			// @include position(relative, 3rem 0 0 8rem);
+		}
+
+
+		.item-line-type{
+			@include paddings(1, 1);
+			@include transform-origin(50% 50%);
+			@include transition(-webkit-transform 2s, opacity 1s);
+			@include media($small)	{ @include shift(2); }
+
+			width:	15rem;
+			height: 15rem;
+			border-radius: 50%;
+			background-color: $color-map-yellow;
+			text-align: center;
+
+			&:nth-child(1){		@include position(absolute, 0 0 0 0); @include transform(rotateX(0) translateZ(10px)); }
+			&:nth-child(2){		@include position(absolute, 0 0 0 0);}
+			&:nth-child(3){		@include position(absolute, 0 0 0 0);}
+			&:nth-child(4){		@include position(absolute, 0 0 0 0);}	
+
+
+			.line-type.length{
+				@include media($big)	{ @include span-columns(8 of 8); }
+				@include media($medium)	{ @include span-columns(8 of 8); }
+				@include media($small)	{ @include span-columns(6 of 6); }
+
+				font:  $font-title;
+				font-size: 8rem;				
+			}
+
+			// Kerning the huge numbers
+			&:nth-child(1)	{ .length .char2 { margin-left: -.25rem; }}
+			&:nth-child(3)	{ .length .char2 { margin-left: -.5rem; } }
+			&:nth-child(4)	{ .length .char2 { margin-left: -.5rem; } }
+
+			.line-type.desc{
+				@include media($big)	{ @include span-columns(8 of 8); }
+				@include media($medium)	{ @include span-columns(8 of 8); font: $font-subheader; }
+				@include media($small)	{ @include span-columns(6 of 6); font: $font-subheader; }
+
+				font-family: miso-bold;
+			}
+
+			span {
+				&:nth-child(1){ 
+					@include media($big)	{ margin-top: 10%; }
+					@include media($medium)	{ margin-top: 8%; }
+					@include media($small)	{ margin-top: 5%; }
+				}
+				&:nth-child(2){ 
+					@include media($medium)	{ margin-top: -4%; }
+					@include media($small)	{ margin-top: -2%; }
+				}
+			}
+		}
+	}
+}

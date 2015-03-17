@@ -1,0 +1,41 @@
+
+// Nav
+// ///////////////////////////////////////////////////////////////
+
+.main-nav{
+	@include span-columns(4);	
+	@include position(relative, -76vh 0 0 0);
+	display: none;
+
+	z-index: -1;
+
+	.nav-svg {
+		width: 100%;
+		height: 230rem;
+	}
+
+	.outer-seg{
+		stroke-linecap: round;
+		stroke-linejoin: round;
+		stroke-width: 64;
+		stroke: black;
+		fill: none;
+	}
+
+	.inner-seg{
+		// display: none;
+		stroke-width: 32;
+		stroke: white;
+		stroke-linecap: round;
+		fill: none;
+	}
+
+	.marker-seg{
+		display: none;
+		stroke-width: 64;
+		stroke: purple;
+		stroke-linecap: round;
+		fill: none;
+	}
+	
+}

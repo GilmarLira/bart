@@ -1,0 +1,60 @@
+
+// Typography
+// ///////////////////////////////////////////////////////////////
+
+@font-face{ 
+	font-family: 'miso-light';
+	src: url('fonts/miso-light-webfont.eot');
+	src: url('fonts/miso-light-webfont?#iefix') format('embedded-opentype'),
+	     url('fonts/miso-light-webfont.woff') format('woff'),
+	     url('fonts/miso-light-webfont.ttf') format('truetype'),
+	     url('fonts/miso-light-webfont.svg#webfont') format('svg');
+}
+
+@font-face{ 
+	font-family: 'miso-regular';
+	src: url('fonts/miso-regular-webfont.eot');
+	src: url('fonts/miso-regular-webfont.eot?#iefix') format('embedded-opentype'),
+	     url('fonts/miso-regular-webfont.woff') format('woff'),
+	     url('fonts/miso-regular-webfont.ttf') format('truetype'),
+	     url('fonts/miso-regular-webfont.svg#webfont') format('svg');
+}
+
+
+@font-face{ 
+	font-family: 'miso-bold';
+	src: url('fonts/miso-bold-webfont.eot');
+	src: url('fonts/miso-bold-webfont.eot?#iefix') format('embedded-opentype'),
+	     url('fonts/miso-bold-webfont.woff') format('woff'),
+	     url('fonts/miso-bold-webfont.ttf') format('truetype'),
+	     url('fonts/miso-bold-webfont.svg#webfont') format('svg');
+}
+
+
+
+
+$font-title-family			:"miso-bold";
+$font-header-family			:"miso-light";
+$font-subheader-family		:"miso-light";
+$font-body-family 			:"miso-regular";
+
+$font-title-size			:4.6875rem;
+$font-header-size			:2.875rem;
+$font-subheader-size		:1.5rem;
+$font-body-size				:1rem;
+$font-small-size			:.5rem;
+$font-caption-size			:.44rem;
+
+$font-title-line			:1.0;
+$font-header-line			:1.0;
+$font-subheader-line		:1.0;
+$font-body-line				:1.0;
+$font-small-line			:2.0;
+$font-caption-line			:1.71;
+
+$font-title				:4.6875rem/1.0 miso-bold, sans-serif;
+$font-header			:2.875rem/1.0 miso-light, sans-serif;
+$font-subheader			:1.5rem/1.0 miso-bold, sans-serif;
+$font-body 				:1rem/1.0 miso-light, sans-serif;
+$font-small				:0.75rem/1.2 miso-regular, sans-serif;
+$font-caption			:0.4375rem/1.71 miso-regular, sans-serif;

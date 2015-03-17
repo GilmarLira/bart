@@ -1,0 +1,115 @@
+
+// Header 
+// ///////////////////////////////////////////////////////////////
+
+#cab{
+	z-index: 3;
+	width: 100%;
+	background-color: $color-header-background;
+	color: $color-header;
+
+	:-webkit-full-screen &{ @include animation(fade-out 1s ease-in-out 4s both); }
+
+	@include transition(background-color 2s  ease-in-out 0.5s);
+
+	@include media($big) {
+		.start-button{
+			@include outer-container;	
+			@include position(relative, 40% 0 0 0);
+			@include transition(-webkit-transform 2s ease-in-out 0.5s, opacity 1.8s ease-out 0.5s);
+			@include animation(fade-in 2s ease-in-out 8s both);
+
+			:-webkit-full-screen &{ opacity: 0; }
+
+			height: 8rem;
+
+			.overlay-svg {
+				@include span-columns(9 of 12);
+
+				height: 8rem;
+
+				text {
+					font: $font-title;
+					font-size: $font-header-size;
+					fill: $color-header-background;
+				}
+
+				.overlay{
+					stroke-width: 256px;
+					stroke-linecap: round;
+					stroke: lighten($color-header-background, 20%);
+				}
+
+				.inner-circle{ fill: $color-header-background; }	
+			
+				&:hover{
+					cursor: pointer;
+					.inner-circle{ fill: $color-header-background;}
+					.overlay {stroke: darken($color-header, 30%); }
+				}
+			}	
+
+			
+		}
+	}
+
+	@include media($medium) { 
+		@include animation(background-fade-out 2s ease-in-out 8s both);
+		.start-button{ display: none; } 
+	}
+
+	@include media($small)	{
+		@include animation(background-fade-out 2s ease-in-out 8s both);
+		.start-button{ display: none; } 
+	}
+	
+
+
+	.tentativa{
+		@include outer-container;
+		@include media($big) 	{ @include position(relative, 30% 0 0 0); }
+		@include media($medium) { @include position(relative, 30% 0 0 0); }
+		@include media($small) 	{ @include position(relative, 30% 0 0 0); }
+
+		:-webkit-full-screen &{	@include animation(flicker-in 3.0s ease-in 1s reverse both);}
+
+		z-index: 1;		
+
+		.main-title{
+			font: $font-title;
+
+			@include media($big) 	{ @include span-columns(12); @include shift(2); }
+			@include media($medium)	{ @include span-columns(12); @include shift(2); }
+			@include media($small) 	{ @include span-columns(6); @include shift(1); font-size: $font-header-size; }
+
+			
+			:-webkit-full-screen &{		@include animation(flicker-in 3.0s ease-in 1s reverse both);}
+
+			.char1 	{ 	@include animation(flicker-in 2.0s ease-in both);	}
+			.char2 	{ 	@include animation(flicker-in 2.0s ease-in both);	}
+			.char3 	{ 	@include animation(flicker-in 2.0s ease-in both);	}
+			.char4 	{ 	@include animation(flicker-in 2.0s ease-in both); margin-left: .05rem;	}
+			
+			.char5 	{ 	@include animation(flicker-in 3.0s ease-in 1.11s both); margin-left: 1.1rem;	}			
+			.char6 	{ 	@include animation(flicker-in 3.0s ease-in 1.11s both);	}
+			.char7 	{ 	@include animation(flicker-in 2.0s ease-in 1.10s both);	margin-left: -.025rem;}
+			.char8 	{ 	@include animation(flicker-in 5s ease-in 1.11s both); margin-left: -.025rem;	}
+			.char9 	{ 	@include animation(flicker-in 3.0s ease-in 1.10s both);	}
+			.char10 { 	@include animation(flicker-in 3.0s ease-in 1.11s both);	}
+			.char11 { 	@include animation(flicker-in 3.0s ease-in 1.10s both);	}
+			.char12 { 	@include animation(flicker-in 3.0s ease-in 1.10s both);	margin-left: -.075rem; }
+			.char13 { 	@include animation(flicker-in 3.0s ease-in 1.10s both);	}
+			.char14 { 	@include animation(flicker-in 3.0s ease-in 1.11s both);	}
+			.char15 { 	@include animation(flicker-in 3.0s ease-in 1.11s both);	}
+			.char16 { 	@include animation(flicker-in 3.0s ease-in 1.10s both);	}	
+		}
+
+		.main-subtitle{
+			@include media($big) 	{ @include span-columns(12); @include shift(2); }
+			@include media($medium)	{ @include span-columns(12); @include shift(2); }
+			@include media($small) 	{ @include span-columns(6); @include shift(1); @include margins(1,1); font-size: $font-subheader-size; }
+			@include animation(flicker-in 2.0s ease-in-out 4s both);
+		}
+	}
+}
+

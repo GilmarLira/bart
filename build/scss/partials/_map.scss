@@ -1,0 +1,37 @@
+
+// Map
+// /////////////////////////////////////////////////////
+
+.frickin-map-crazy-ass-sublayer{
+	width: 100%;
+	overflow:hidden;
+
+	@include transform(translate3d(0));
+
+	@include media($big) 	{ height: 60vh; }
+	@include media($medium) { height: 650px;}
+	@include media($small)	{ height: 600px;}	
+
+	#svgCanvas {
+		display:block;
+		
+		width: 100%;
+		background-color:  lighten($color-header-background, 10%);		
+		margin-left: auto;
+		margin-right: auto;
+
+		g.map-group{
+			@include transform-origin(25% 50%);
+			@include media($big) { @include animation(zoom-out 10s ease-in-out 10s both); }
+		}
+	}
+}
+
+
+.content-section.map{
+	@include media($big) 	{ height: 60vh; }
+	@include media($medium) { height: 650px;}
+	@include media($small)	{ height: 600px;}	
+
+	.overlay-svg {	stroke: $color-map-green;	}
+}
