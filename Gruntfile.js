@@ -10,8 +10,8 @@ module.exports = function(grunt) {
             dest: 'build/js/script.js'
         },
   			push: {
-            src: 'build/js/scripts.js',
-    				dest: 'www/js/scripts.js',
+            src: 'build/js/script.js',
+    				dest: 'www/js/script.js',
   			}
     },
     // uglify: {

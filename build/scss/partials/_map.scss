@@ -2,36 +2,34 @@
 // Map
 // /////////////////////////////////////////////////////
 
-.frickin-map-crazy-ass-sublayer{
-	width: 100%;
-	overflow:hidden;
+.frickin-map-crazy-ass-sublayer {
+  @include transform(translate3d(0));
+  @include media($big) { height: 60vh; }
+  @include media($medium) { height: 650px;}
+  @include media($small) { height: 600px;}
 
-	@include transform(translate3d(0));
+  overflow: hidden;
+  width: 100%;
 
-	@include media($big) 	{ height: 60vh; }
-	@include media($medium) { height: 650px;}
-	@include media($small)	{ height: 600px;}	
+  #svgcanvas {
+    background-color: lighten($color-header-background, 10%);
+    display: block;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 
-	#svgCanvas {
-		display:block;
-		
-		width: 100%;
-		background-color:  lighten($color-header-background, 10%);		
-		margin-left: auto;
-		margin-right: auto;
-
-		g.map-group{
-			@include transform-origin(25% 50%);
-			@include media($big) { @include animation(zoom-out 10s ease-in-out 10s both); }
-		}
-	}
+    g.map-group {
+      @include transform-origin(25% 50%);
+      @include media($big) { @include animation(zoom-out 10s ease-in-out 10s both); }
+    }
+  }
 }
 
+.content-section.map {
+  @include media($big) { height: 60vh; }
+  @include media($medium) { height: 650px; }
+  @include media($small) { height: 600px; }
 
-.content-section.map{
-	@include media($big) 	{ height: 60vh; }
-	@include media($medium) { height: 650px;}
-	@include media($small)	{ height: 600px;}	
-
-	.overlay-svg {	stroke: $color-map-green;	}
+  .overlay-svg { stroke: $color-map-green;  }
 }
