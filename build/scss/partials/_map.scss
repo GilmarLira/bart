@@ -12,7 +12,7 @@
   width: 100%;
 
   #svgcanvas {
-    background-color: lighten($color-header-background, 10%);
+    // background-color: lighten($color-header-background, 5%);
     display: block;
     height: 100%;
     margin-left: auto;
@@ -21,9 +21,14 @@
 
     g.map-group {
       @include transform-origin(25% 50%);
-      @include media($big) { @include animation(zoom-out 10s ease-in-out 10s both); }
+      @include media($big) { @include animation(zoom-out 5s ease-in-out 10s both); }
     }
+
+    &:hover { cursor: -webkit-grab; }
+    &:active { cursor: -webkit-grabbing; }
   }
+
+  #text path { fill: $color-text; }
 }
 
 .content-section.map {

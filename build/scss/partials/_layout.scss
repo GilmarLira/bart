@@ -16,7 +16,6 @@ body {
   color: darken($color-header, 20%);
   font: $font-body;
   height: 100%;
-  // text-rendering: optimizeLegibility;
   text-transform: uppercase;
   // -webkit-tap-highlight-color: transparent;
 }
@@ -38,14 +37,14 @@ body {
 
 
 .content-section {
-  @include media($big) { @include span-columns(12 of 12); }
+  // @include media($big) { @include span-columns(12 of 12); }
   // @include media($medium)  { @include span-columns(12 of 12); }
   // @include media($small)  { @include span-columns(6 of 6); }
-  // @include fill-parent;
-
-
+  @include fill-parent;
 
   .section-header {
+    z-index: 100;
+    @include transform(translateZ(1px));
     @include position(-webkit-sticky, 0 0 0 0);
     @include position(sticky, 0 0 0 0);
 

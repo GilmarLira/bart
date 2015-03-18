@@ -3,11 +3,9 @@
 // ///////////////////////////////////////////////////////////////
 
 @include keyframes(flicker-in) {
-  0% {   opacity: 0;
-          text-shadow: none;}
+  0% {   opacity: 0; text-shadow: none;}
   10% {   opacity: .01;   }
-  20% {   opacity: .05;
-          text-shadow: 0px 0px 5px #fff;   }
+  20% {   opacity: .05; text-shadow: 0 0 5px #fff;   }
   21% {   opacity: .03;   }
   22% {   opacity: .05;   }
   23% {   opacity: .03;   }
@@ -118,8 +116,8 @@
 
 @include keyframes(zoom-out) {
   0% {   @include transform(scale(1) translate(400px, 50px));    }
-  50% {  @include transform(scale(10));  }
-  100% { @include transform(scale(1) translate(400px, 50px));    }
+  50% {  @include transform(scale(4));  }
+  100% { @include transform(scale(2) translate(200px, 50px));    }
 }
 
 
