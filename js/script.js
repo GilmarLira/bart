@@ -661,7 +661,7 @@ jQuery(document).ready(function(){
 		.attr("class", "user-stats-gender chart")
 		.attr("width", width)
 		.attr("height", 192);
-	
+
 	var graph_age = d3.select("#user-stats-age").append("svg")
 		.attr("class", "user-stats-age chart")
 		.attr("width", width)
@@ -677,9 +677,9 @@ jQuery(document).ready(function(){
 		.attr("width", width)
 		.attr("height", 192);
 
-	
-	var station = 	stations[index];		
-	
+
+	var station = 	stations[index];
+
 
 	// Gender
 	graph_gender.selectAll("rect")
@@ -696,7 +696,7 @@ jQuery(document).ready(function(){
 		.text(String);
 
 
-	// Age	  
+	// Age
 	var y_age = d3.scale.linear()
 		.domain([0, 45])
     	.rangeRound([0, 192]);
@@ -711,7 +711,7 @@ jQuery(document).ready(function(){
 		.attr("x1", 0)
 		.attr("x2", width)
 		.attr("y1", y_age)
-		.attr("y2", y_age);  	
+		.attr("y2", y_age);
 
 	graph_age.selectAll("rect")
 		.data(station.Age)
@@ -728,9 +728,9 @@ jQuery(document).ready(function(){
 	    .attr("y", "90%")
 	    .attr("dx", x_age.rangeBand()/2)
 	    .text(String);
-	    
-	    
-	// Origin    
+
+
+	// Origin
 	var x_origin = d3.scale.linear()
 		.domain([0, d3.max(station.Origin)])
     	.range([0, width]);
@@ -745,7 +745,7 @@ jQuery(document).ready(function(){
 		.attr("x1", x_origin)
 		.attr("x2", x_origin)
 		.attr("y1", 0)
-		.attr("y2", 192);  	
+		.attr("y2", 192);
 
 	graph_origin.selectAll("rect")
 		.data(station.Origin)
@@ -758,14 +758,14 @@ jQuery(document).ready(function(){
 	    .data(station.Origin)
 	  .enter().append("text")
 	    .attr("x", x_origin)
- 	    .attr("y", function(d, i){ return i*32 + 14;}) 
+ 	    .attr("y", function(d, i){ return i*32 + 14;})
 	    .attr("dx", -5) // padding-right
 	    .attr("dy", ".35em") // vertical-align: middle
 	    .attr("text-anchor", "end") // text-align: right
-		.text(String);    
+		.text(String);
 
 
-	
+
 	// Income
 	var x_income = d3.scale.linear()
 	    .domain([0, 8])
@@ -774,14 +774,14 @@ jQuery(document).ready(function(){
 	var y_income = d3.scale.linear()
 		.domain([0, d3.max(station.Income)])
     	.rangeRound([0, 192]);
-    	
+
    	graph_income.selectAll("line")
 		.data(y_income.ticks(6))
 	  .enter().append("line")
 		.attr("x1", 0)
 		.attr("x2", width)
 		.attr("y1", y_income)
-		.attr("y2", y_income);  	
+		.attr("y2", y_income);
 
 	graph_income.selectAll("rect")
 		.data(station.Income)
@@ -799,12 +799,12 @@ jQuery(document).ready(function(){
 	    .attr("dx", 38)
 	    .text(String);
 
-	    
-	    
-	function update(index){		
+
+
+	function update(index){
 		// Data check
 /* 		console.log(stations[index]); */
-		
+
 		// Data join
 		graph_gender.selectAll("rect")
 			.data(stations[index].Gender)
@@ -812,7 +812,7 @@ jQuery(document).ready(function(){
 			.transition()
 			.duration(1000)
 			.attr("width", function(d, i){ if(i == 0) {return "100%";} else { return d + "%";}});
-			
+
 
 		graph_gender.selectAll("text")
 			.data(stations[index].Gender)
@@ -820,8 +820,8 @@ jQuery(document).ready(function(){
 			.transition()
 			.duration(1000)
 			.text(String);
-			
-			
+
+
 		graph_age.selectAll("rect")
 			.data(stations[index].Age)
 			.attr("class", "update")
@@ -829,7 +829,7 @@ jQuery(document).ready(function(){
 			.duration(1000)
 			.attr("y", function(d){ return 192 - y_age(d);})
 			.attr("height", y_age);
-			
+
 		graph_origin.selectAll("rect")
 			.data(stations[index].Origin)
 			.attr("class", "update")
@@ -837,7 +837,7 @@ jQuery(document).ready(function(){
 			.duration(1000)
 			.attr("width", x_origin);
 
-			
+
 		graph_income.selectAll("rect")
 			.data(stations[index].Income)
 			.attr("class", "update")
@@ -846,14 +846,11 @@ jQuery(document).ready(function(){
 			.attr("y", function(d){ return 192 - y_income(d);})
 			.attr("height", y_income);
 	}
-	
-	
-	jQuery(".item-station").click(function(){
+
+
+	jQuery(".item-station").hover(function(){
 		index = $(this).index();
-		console.log("variable index is now: " + index);		
+		console.log("variable index is now: " + index);
 		update(index);
 	});
-
-
-
 });
