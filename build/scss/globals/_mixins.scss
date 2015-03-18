@@ -70,21 +70,21 @@
 // Rhythm Mixin. Adheres to Baseline Grid.
 @mixin rhythm($scale, $before: 0, $after: 0) {
   @if $scale == 0 and $before == 0 and $after == 0 {
-    font-size: $body-font-size;
-    line-height: $body-font-size * $body-line-height;
+    font-size: $font-body-size;
+    line-height: $font-body-size * $font-body-line;
   }
   @else {
     @if $scale == 0 {
-      font-size: $body-font-size;
-      line-height: $body-font-size * $body-line-height;
+      font-size: $font-body-size;
+      line-height: $font-body-size * $font-body-line;
     }
     @else {
-      $new-font-size: round($body-font-size * exponent($scale-factor, $scale));
+      $new-font-size: round($font-body-size * exponent($scale-factor, $scale));
       font-size: $new-font-size;
-      line-height: ceil($new-font-size / ($body-line-height * $body-font-size)) * $body-line-height * $body-font-size;
+      line-height: ceil($new-font-size / ($font-body-line * $font-body-size)) * $font-body-line * $font-body-size;
     }
-    margin-top: $body-font-size * $body-line-height * $before;
-    margin-bottom: $body-font-size * $body-line-height * $after;
+    margin-top: $font-body-size * $font-body-line * $before;
+    margin-bottom: $font-body-size * $font-body-line * $after;
   }
 }
 

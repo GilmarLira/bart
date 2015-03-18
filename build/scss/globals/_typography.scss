@@ -2,7 +2,7 @@
 // Typography
 // ///////////////////////////////////////////////////////////////
 
-@font-face{ 
+@font-face{
 	font-family: 'miso-light';
 	src: url('fonts/miso-light-webfont.eot');
 	src: url('fonts/miso-light-webfont?#iefix') format('embedded-opentype'),
@@ -11,7 +11,7 @@
 	     url('fonts/miso-light-webfont.svg#webfont') format('svg');
 }
 
-@font-face{ 
+@font-face{
 	font-family: 'miso-regular';
 	src: url('fonts/miso-regular-webfont.eot');
 	src: url('fonts/miso-regular-webfont.eot?#iefix') format('embedded-opentype'),
@@ -21,7 +21,7 @@
 }
 
 
-@font-face{ 
+@font-face{
 	font-family: 'miso-bold';
 	src: url('fonts/miso-bold-webfont.eot');
 	src: url('fonts/miso-bold-webfont.eot?#iefix') format('embedded-opentype'),
@@ -31,7 +31,7 @@
 }
 
 
-
+$scale-factor: 1.414;
 
 $font-title-family			:"miso-bold";
 $font-header-family			:"miso-light";
@@ -47,14 +47,14 @@ $font-caption-size			:.44rem;
 
 $font-title-line			:1.0;
 $font-header-line			:1.0;
-$font-subheader-line		:1.0;
+$font-subheader-line	:1.0;
 $font-body-line				:1.0;
 $font-small-line			:2.0;
-$font-caption-line			:1.71;
+$font-caption-line		:1.71;
 
 $font-title				:4.6875rem/1.0 miso-bold, sans-serif;
 $font-header			:2.875rem/1.0 miso-light, sans-serif;
-$font-subheader			:1.5rem/1.0 miso-bold, sans-serif;
+$font-subheader		:1.5rem/1.0 miso-bold, sans-serif;
 $font-body 				:1rem/1.0 miso-light, sans-serif;
 $font-small				:0.75rem/1.2 miso-regular, sans-serif;
 $font-caption			:0.4375rem/1.71 miso-regular, sans-serif;

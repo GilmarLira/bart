@@ -2,111 +2,92 @@
 // Users
 // ///////////////////////////////////////////////////////////////
 
-.content-section.users{
-	.overlay-svg {	stroke: $color-map-orange;	}
+.content-section.users {
+  .overlay-svg {  stroke: $color-map-orange;  }
 
-	.section-content{ 
-		@include position(1rem 0 0 0); 
-		@include media($medium)	{ @include position(2rem 0 0 0); }
-	}
+  .section-content {
+    @include position(1rem 0 0 0);
+    @include media($medium) { @include position(2rem 0 0 0); }
+  }
 
-	.list-user-stats{
-		@include media($big) 	{ @include span-columns(9 of 12); }
-		@include media($medium) { @include span-columns(9 of 12); }
-		@include media($small) 	{ @include span-columns(6 of 6); }
+  .list-user-stats {
+    @include media($big) { @include span-columns(9 of 12); }
+    @include media($medium) { @include span-columns(9 of 12); }
+    @include media($small) { @include span-columns(6 of 6); }
 
-		@include margins(0, 1);
+    @include margins(0, 1);
+  }
 
-		.item-user-stats{
-			@include margins(0, 2);
-			
-			.user-stats.name{
-				text-align: right;
-				font: $font-body;
-			}
+  .item-user-stats {
+    @include clearfix;
+    @include margins(0, 2);
 
-			&:last-child{
-				@include margins(0, 0);
-			}
-		}
-		
-		div.chart {
-			@include media($big)	{ @include span-columns(9 of 9); }
-			@include media($medium)	{ @include span-columns(9 of 9); }
-			@include media($small)	{ @include span-columns(6 of 6); }
+    &:last-child { @include margins(0, 0); }
+  }
 
-			overflow: hidden;
-		}
+  div.chart {
+    @include media($big) { @include span-columns(9 of 9); }
+    @include media($medium) { @include span-columns(9 of 9); }
+    @include media($small) { @include span-columns(6 of 6); }
+  }
 
-		svg.chart{
-			@include fill-parent;
-			background-color: $color-chart-background;
+  svg.chart {
+    @include fill-parent;
+    background-color: $color-chart-background;
 
-			rect{
-				stroke: none;
-				fill: 	$color-map-orange;
-			}
+    rect {
+      fill: $color-map-orange;
+      stroke: none;
+    }
 
-			line{ stroke: $color-chart-ticks; }	
+    line { stroke: $color-chart-ticks; }
 
 
-			&.user-stats-gender{
-				height: 3rem;
-				font: $font-body;
-				
-				rect{
-					&:nth-child(1)	{ fill:	$color-chart-fill2; }
-					&:nth-child(2)	{ fill: $color-chart-fill3;	}
-				}
-			}
+    &.user-stats-gender {
+      rect {
+        &:nth-child(1) { fill: $color-chart-fill2; }
+        &:nth-child(2) { fill: $color-chart-fill3; }
+      }
+    }
 
-			&.user-stats-age	{ font: $font-caption; }
-			&.user-stats-origin	{ font: $font-caption; }
-			&.user-stats-income { font: $font-caption; }
-		}
-	}
-
-
-	.station-nav{
-		@include media($big)	{ 
-			@include span-columns(3 of 12);
-			@include omega;
-		}
-
-		@include media($medium)	{ 
-			@include span-columns(3 of 12);
-			@include omega;
-		}
-
-		@include media($small)	{
-			display: none;
-		}
-
-		// Use select element instead for media($small)
-
-		@include margins(1,0);
-
-		.hide{
-			height:0;
-			overflow: hidden;
-		}
-
-		.list-station{
-			text-align: right;
-			font: $font-caption;
-
-			.item-station{
-				.name {
-					padding-right: .5rem;
-				}
-
-				&:hover{
-					cursor: pointer;
-					background-color: $color-map-orange;
-					color: $color-header-background;
-					font-family: miso-regular;
-				}
-			}
-		}	
-	}	
+    &.user-stats-age {    font: $font-caption; }
+    &.user-stats-origin { font: $font-caption; }
+    &.user-stats-income { font: $font-caption; }
+  }
 }
+
+
+.station-nav {
+  @include margins(1, 0);
+
+  @include media($big) {
+    @include span-columns(3 of 12);
+    @include omega;
+  }
+
+  @include media($medium) {
+    @include span-columns(3 of 12);
+    @include omega;
+  }
+
+  @include media($small) { display: none; }
+
+
+  .hide {
+    height: 0;
+    overflow: hidden;
+  }
+
+  .list-station {
+    font: $font-caption;
+    text-align: right;
+
+    .name { padding-right: .5rem; }
+
+    .item-station:hover {
+      background-color: $color-map-orange;
+      color: $color-header-background;
+      cursor: pointer;
+      }
+    }
+  }
