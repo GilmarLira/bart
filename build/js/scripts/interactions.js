@@ -11,7 +11,7 @@ var delay = (function(){
 	  };
 	})();
 
-$(window).resize(function() { 
+$(window).resize(function() {
 	delay(function(){
 			console.log('Resize...');
 		    initContainer();
@@ -30,85 +30,40 @@ function initContainer() {
 	if (containerWidth < 480) {
 		console.log("iPhone!");
 
-		$(".main-header").css({
-			height: containerHeight	});
-		
-		$(".content-section.map").css({ 
-			height: containerHeight * 0.3 });
-
-		$(".content-section.lines").css({ 
-			height: containerHeight * 1.2 });
-
-		$(".content-section.stations").css({ 
-			height: containerHeight * 1.2 });
-
-		$(".content-section.trains").css({ 
-			height: containerHeight * 4 });
-
-		$(".content-section.users").css({ 
-			height: containerHeight * 1.2 });
-	} 
+		$(".main-header").css({ height: containerHeight	});
+		$(".content-section.map").css({ height: containerHeight * 0.3 });
+		$(".content-section.lines").css({ height: containerHeight * 1.2 });
+		$(".content-section.stations").css({ height: containerHeight * 1.2 });
+		$(".content-section.trains").css({ height: containerHeight * 4 });
+		$(".content-section.users").css({ height: containerHeight * 1.2 }); }
 
 	else if(containerWidth > 480 && containerWidth < 1025) {
 		console.log("iPad!");
 
 		if(window.orientation == 90 || window.orientation == -90 ){
-			$(".main-header").css({	
-				height: containerHeight * 1.02	});
-
-			$(".content-section.map").css({ 
-				height: containerHeight * 0.4 });
-
-			$(".content-section.lines").css({ 
-				height: containerHeight * 1.6 });
-
-			$(".content-section.stations").css({ 
-				height: containerHeight * 1.6 });
-
-			$(".content-section.trains").css({ 
-				height: containerHeight * 1.8 });
-
-			$(".content-section.users").css({ 
-				height: containerHeight * 1.9 });	
+			$(".main-header").css({ height: containerHeight * 1.02	});
+			$(".content-section.map").css({ height: containerHeight * 0.4 });
+			$(".content-section.lines").css({ height: containerHeight * 1.6 });
+			$(".content-section.stations").css({ height: containerHeight * 1.6 });
+			$(".content-section.trains").css({ height: containerHeight * 1.8 });
+			$(".content-section.users").css({ height: containerHeight * 1.9 });
 		} else {
-			$(".main-header").css({	
-				height: containerHeight * 1.02	});
-
-			$(".content-section.map").css({ 
-				height: containerHeight * 0.3 });
-
-			$(".content-section.lines").css({ 
-				height: containerHeight * 1.0 });
-
-			$(".content-section.stations").css({ 
-				height: containerHeight * 1.0 });
-
-			$(".content-section.trains").css({ 
-				height: containerHeight * 1.1 });
-
-			$(".content-section.users").css({ 
-				height: containerHeight * 1.1 });	
+			$(".main-header").css({ height: containerHeight * 1.02	});
+			$(".content-section.map").css({ height: containerHeight * 0.3 });
+			$(".content-section.lines").css({ height: containerHeight * 1.0 });
+			$(".content-section.stations").css({ height: containerHeight * 1.0 });
+			$(".content-section.trains").css({ height: containerHeight * 1.1 });
+			$(".content-section.users").css({ height: containerHeight * 1.1 });
 		}
 	} else if(containerWidth > 1024) {
 		console.log("Mac!");
 
-		$(".main-header").css({	
-			height: containerHeight * 1.02	});
-
-		$(".content-section.map").css({ 
-			height: containerHeight * 0.4 });
-
-		$(".content-section.lines").css({ 
-			height: containerHeight * 1.2 });
-
-		$(".content-section.stations").css({ 
-			height: containerHeight * 1.2 });
-
-		$(".content-section.trains").css({ 
-			height: containerHeight * 1.4 });
-
-		$(".content-section.users").css({ 
-			height: containerHeight * 1.2 });
+		$(".main-header").css({ height: containerHeight * 1.02	});
+		$(".content-section.map").css({ height: containerHeight * 0.4 });
+		$(".content-section.lines").css({ height: containerHeight * 1.2 });
+		$(".content-section.stations").css({ height: containerHeight * 1.2 });
+		$(".content-section.trains").css({ height: containerHeight * 1.4 });
+		$(".content-section.users").css({ height: containerHeight * 1.2 });
 	}
 
 	redrawSVG();
@@ -195,7 +150,7 @@ function redrawSVG(){
 
 
 function isiPad(){
-    console.log("wtf:" + (navigator.platform.indexOf("iPad") != -1));	
+    console.log("wtf:" + (navigator.platform.indexOf("iPad") != -1));
     return (navigator.platform.indexOf("iPad") != -1);
 }
 
@@ -210,7 +165,7 @@ jQuery(document).ready(function(){
 
 
 	// Split title letters (lettering.js)
-	$(".main-title").lettering(); 
+	$(".main-title").lettering();
 
 	$(".content-section.lines .length").lettering();
 	$(".content-section.stations .amount").lettering();
@@ -238,7 +193,7 @@ jQuery(document).ready(function(){
 				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(10px)",
 				opacity: 0.2
 				});
-						
+
 			$(this).find("li:nth-child(4)").css({
 				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(-200px)",
 				opacity: 0.2
@@ -257,7 +212,7 @@ jQuery(document).ready(function(){
 				$(".item-line-type").css({
 					zIndex: 0,
 					opacity: 0.2
-				});			
+				});
 			}
 			);
 
@@ -295,7 +250,7 @@ jQuery(document).ready(function(){
 				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(10px)",
 				opacity: 0.2
 				});
-						
+
 			$(this).find("li:nth-child(4)").css({
 				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(-200px)",
 				opacity: 0.2
@@ -312,7 +267,7 @@ jQuery(document).ready(function(){
 				$(".item-station-type").css({
 					zIndex: 0,
 					opacity: 0.2
-					});			
+					});
 				}
 			);
 
@@ -331,7 +286,3 @@ jQuery(document).ready(function(){
 		}
 	});
 });
-
-
-
-	
