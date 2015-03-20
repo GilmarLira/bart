@@ -5,11 +5,11 @@
 .content-section.lines {
   color: $color-header-background;
 
-  @include perspective(1200px);
-  @include perspective-origin(30% 30%);
+  @include perspective-origin(0% 0%);
   @include transform-style(preserve-3d);
   @include transform-origin(50% 50%);
-  // @include margins(8, 0);
+  @include media($big) { @include perspective(1200px); }
+  @include media($medium) { @include perspective(2400px); }
 
   .overlay-svg {  stroke: $color-map-yellow;  }
 
@@ -21,68 +21,70 @@
   .list {
     height: 17rem;
 
+    @include margins;
+    @include transition(-webkit-transform .5s, opacity 1s);
     @include transform-style(preserve-3d);
     @include media($big) {
-      @include span-columns(8 of 12);
-      @include position(relative, 3rem 0 0 8rem);
+      @include span-columns(6 of 12);
+      @include shift(3);
+      // @include position(relative, 3rem 0 0 8rem);
     }
 
     @include media($medium) {
-      @include span-columns(8 of 12);
-      @include shift(4);
+      @include span-columns(6 of 12);
+      @include shift(6);
     }
 
-    @include media($small) {
-      @include span-columns(6 of 8);
-    }
+    @include media($small) { @include span-columns(6 of 8); }
 
     &:hover {
       cursor: pointer;
       .item-line-type { @include transform(rotateY(-40deg)); }
     }
+
+    // &:active {
+    //   .list-item { background: pink; }
+    //   .list-item:nth-child(1) { @include transform(rotateX(0deg) rotateY(-35deg) translateZ(0px)); }
+    //   .list-item:nth-child(2) { @include transform(rotateX(0deg) rotateY(-35deg) translateZ(100px)); }
+    //   .list-item:nth-child(3) { @include transform(rotateX(0deg) rotateY(-35deg) translateZ(300px)); }
+    //   .list-item:nth-child(4) { @include transform(rotateX(0deg) rotateY(-35deg) translateZ(600px)); }
+    // }
+
   }
 
   .list-item {
     background-color: $color-map-yellow;
     border-radius: 50%;
-    height: 15rem;
     text-align: center;
-    width: 15rem;
 
     @include position(absolute);
-    @include paddings(3, 1);
     @include transform-origin(50% 50%);
-    @include transition(-webkit-transform 1s, opacity 1s);
-    @include media($medium) { @include size(12rem 12rem); @include paddings(2, 0); }
+    // @include transform(rotateX(0deg) rotateY(0deg) translateZ(0px));
+    @include transition(all .5s ease);
+
+    @include media($big) { @include size(15rem); @include paddings(3, 1); }
+    @include media($medium) { @include size(12rem); @include paddings(2); }
     @include media($small) { @include shift(2); }
+
+    &.explode {
+      opacity: .2;
+      &:hover { opacity: 1; }
+    }
+
+    &:nth-child(1).explode { @include transform(rotateY(-50deg) translateZ(-100px)); }
+    &:nth-child(2).explode { @include transform(rotateY(-50deg) translateZ(100px)); }
+    &:nth-child(3).explode { @include transform(rotateY(-50deg) translateZ(300px)); }
+    &:nth-child(4).explode { @include transform(rotateY(-50deg) translateZ(500px)); }
 
     .display {
       @extend .delta;
       @include margins;
-      // @include span-columns(8 of 8);
-      // @include media($small) { @include span-columns(6 of 6); }
     }
 
     .desc {
       @include typeface-miso-bold;
       @include margins;
-      // @include media($big) { @include span-columns(8 of 8); }
-      // @include media($medium) { @include span-columns(8 of 8); }
-      // @include media($small) { @include span-columns(6 of 6); }
     }
-
-    // p {
-    //   &:nth-child(1) {
-    //     @include media($big) { margin-top: 10%; }
-    //     @include media($medium) { margin-top: 8%; }
-    //     @include media($small) { margin-top: 5%; }
-    //   }
-    //
-    //   &:nth-child(2) {
-    //     @include media($medium) { margin-top: -4%; }
-    //     @include media($small) { margin-top: -2%; }
-    //   }
-    // }
 
     // Kerning the huge numbers
     &:nth-child(1) { .display .char2 { margin-left: -.25rem; }}

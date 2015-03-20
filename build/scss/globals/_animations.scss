@@ -134,11 +134,10 @@
 }
 
 
-@include keyframes(explode) {
-  0% {   @include transform(translateZ(0));    }
-  20% {  @include transform(translateZ(-20px));  }
-  100% { @include transform(translateZ(100px));  }
-}
+// @include keyframes(explode) {
+//   0% {       }
+//   100% { @include transform(rotateX(0deg) rotateY(-35deg) translateZ(300px)); }
+// }
 
 
 @include keyframes(fade-out) {

@@ -467,125 +467,128 @@ jQuery(document).ready(function(){
 
 	// Split title letters (lettering.js)
 	$(".main-title").lettering();
-
-	$(".content-section.lines .display").lettering();
-	$(".content-section.stations .display").lettering();
+	$(".content-section .display").lettering();
 
 
 	// "Tracks" Exploding animation
-	var explode_lines = 0;
-	$(".lines .list").click(function(){
-		if (explode_lines === 0) {
-			$(this).css({
-				// webkitTransform: 'translateZ(300px)'
-			});
+	// var explode_lines = 0;
 
-			$(this).find("li:nth-child(1)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(600px)",
-				opacity: 0.2
-				});
-
-			$(this).find("li:nth-child(2)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(260px)",
-				opacity: 0.2
-				});
-
-			$(this).find("li:nth-child(3)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(10px)",
-				opacity: 0.2
-				});
-
-			$(this).find("li:nth-child(4)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(-200px)",
-				opacity: 0.2
-				});
-
-			explode_lines = 1;
-
-			$(".list-item").hover(function(){
-				$(this).css({
-					zIndex: 3,
-					opacity: 1.0
-				});
-
-				console.log("Hover!");
-			}, function(){
-				$(".list-item").css({
-					zIndex: 0,
-					opacity: 0.2
-				});
-			}
-			);
-
-		} else {
-			$(".list-item").css({
-				webkitTransform: 'rotate(0) translate(0)',
-				opacity: 1.0
-			});
-
-			// $(".list-line-type").css({
-			// 	webkitTransform: 'translateZ(-100px)',
-			// 	opacity: 1
-			// });
-
-			explode_lines = 0;
-		}
+	$(".list").click(function(){
+		$(this).find('.list-item').toggleClass("explode");
 	});
+
+	// $(".lines .list").click(function(){
+	// 	if (explode_lines === 0) {
+	// 		$(this).css({
+	// 			// webkitTransform: 'translateZ(300px)'
+	// 		});
+	//
+	// 		$(this).find("li:nth-child(1)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(600px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		$(this).find("li:nth-child(2)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(260px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		$(this).find("li:nth-child(3)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(10px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		$(this).find("li:nth-child(4)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(-200px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		explode_lines = 1;
+	//
+	// 		$(".list-item").hover(function(){
+	// 			$(this).css({
+	// 				zIndex: 3,
+	// 				opacity: 1.0
+	// 			});
+	//
+	// 			console.log("Hover!");
+	// 		}, function(){
+	// 			$(".list-item").css({
+	// 				zIndex: 0,
+	// 				opacity: 0.2
+	// 			});
+	// 		}
+	// 		);
+	//
+	// 	} else {
+	// 		$(".list-item").css({
+	// 			webkitTransform: 'rotate(0) translate(0)',
+	// 			opacity: 1.0
+	// 		});
+	//
+	// 		// $(".list-line-type").css({
+	// 		// 	webkitTransform: 'translateZ(-100px)',
+	// 		// 	opacity: 1
+	// 		// });
+	//
+	// 		explode_lines = 0;
+	// 	}
+	// });
 
 
 	// "Stations" Exploding animation
-	var explode_stations = 0;
-	$(".stations .list").click(function(){
-		if (explode_stations === 0) {
-			$(this).find("li:nth-child(1)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(600px)",
-				opacity: 0.2
-				});
-
-			$(this).find("li:nth-child(2)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(260px)",
-				opacity: 0.2
-				});
-
-			$(this).find("li:nth-child(3)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(10px)",
-				opacity: 0.2
-				});
-
-			$(this).find("li:nth-child(4)").css({
-				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(-200px)",
-				opacity: 0.2
-				});
-
-			explode_stations = 1;
-
-			$(".list-item").hover(function(){
-				$(this).css({
-					zIndex: 3,
-					opacity: 1.0
-				});
-			}, function(){
-				$(".list-item").css({
-					zIndex: 0,
-					opacity: 0.2
-					});
-				}
-			);
-
-		} else {
-			$(".list-item").css({
-				webkitTransform: 'rotate(0) translate(0)',
-				opacity: 1.0
-			});
-
-			// $(".list-station-type").css({
-			// 	opacity: 1.0,
-			// 	webkitTransform: 'translateZ(-100px)'
-			// });
-
-			explode_stations = 0;
-		}
-	});
+	// var explode_stations = 0;
+	// $(".stations .list").click(function(){
+	// 	if (explode_stations === 0) {
+	// 		$(this).find("li:nth-child(1)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(600px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		$(this).find("li:nth-child(2)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(260px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		$(this).find("li:nth-child(3)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(10px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		$(this).find("li:nth-child(4)").css({
+	// 			webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(-200px)",
+	// 			opacity: 0.2
+	// 			});
+	//
+	// 		explode_stations = 1;
+	//
+	// 		$(".list-item").hover(function(){
+	// 			$(this).css({
+	// 				zIndex: 3,
+	// 				opacity: 1.0
+	// 			});
+	// 		}, function(){
+	// 			$(".list-item").css({
+	// 				zIndex: 0,
+	// 				opacity: 0.2
+	// 				});
+	// 			}
+	// 		);
+	//
+	// 	} else {
+	// 		$(".list-item").css({
+	// 			webkitTransform: 'rotate(0) translate(0)',
+	// 			opacity: 1.0
+	// 		});
+	//
+	// 		// $(".list-station-type").css({
+	// 		// 	opacity: 1.0,
+	// 		// 	webkitTransform: 'translateZ(-100px)'
+	// 		// });
+	//
+	// 		explode_stations = 0;
+	// 	}
+	// });
 });
 
 
