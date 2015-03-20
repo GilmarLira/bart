@@ -99,13 +99,13 @@ function redrawSVG(){
 	}
 
 	// iPad
-	else if(containerWidth > 480 && containerWidth < 1024 ) {
-		lineX1 		= '10%';
+	else if(containerWidth > 480 && containerWidth < 1025 ) {
+		lineX1 		= '11%';
 		lineX2 		= '80%';
 		lineY 		= '50%';
-		circleCX	= '10%';
+		circleCX	= '11%';
 		textDX		= '24%';
-		textDY		= '79%';
+		textDY		= '82%';
 
 		$(".section-title line.overlay").attr('x1', lineX1);
 		$(".section-title line.overlay").attr('x2', lineX2);
@@ -128,8 +128,8 @@ function redrawSVG(){
 		lineX2 	= '80%';
 		lineY 	= '50%';
 		circleCX	= '16%';
-		textDX  = '35%';
-		textDY	= '65%';
+		textDX  = '30%';
+		textDY	= '74%';
 
 		$(".section-title line.overlay").attr('x1', lineX1);
 		$(".section-title line.overlay").attr('x2', lineX2);
@@ -167,13 +167,13 @@ jQuery(document).ready(function(){
 	// Split title letters (lettering.js)
 	$(".main-title").lettering();
 
-	$(".content-section.lines .length").lettering();
-	$(".content-section.stations .amount").lettering();
+	$(".content-section.lines .display").lettering();
+	$(".content-section.stations .display").lettering();
 
 
 	// "Tracks" Exploding animation
 	var explode_lines = 0;
-	$(".list-line-type").click(function(){
+	$(".lines .list").click(function(){
 		if (explode_lines === 0) {
 			$(this).css({
 				// webkitTransform: 'translateZ(300px)'
@@ -201,7 +201,7 @@ jQuery(document).ready(function(){
 
 			explode_lines = 1;
 
-			$(".item-line-type").hover(function(){
+			$(".list-item").hover(function(){
 				$(this).css({
 					zIndex: 3,
 					opacity: 1.0
@@ -209,7 +209,7 @@ jQuery(document).ready(function(){
 
 				console.log("Hover!");
 			}, function(){
-				$(".item-line-type").css({
+				$(".list-item").css({
 					zIndex: 0,
 					opacity: 0.2
 				});
@@ -217,7 +217,7 @@ jQuery(document).ready(function(){
 			);
 
 		} else {
-			$(".item-line-type").css({
+			$(".list-item").css({
 				webkitTransform: 'rotate(0) translate(0)',
 				opacity: 1.0
 			});
@@ -234,7 +234,7 @@ jQuery(document).ready(function(){
 
 	// "Stations" Exploding animation
 	var explode_stations = 0;
-	$(".list-station-type").click(function(){
+	$(".stations .list").click(function(){
 		if (explode_stations === 0) {
 			$(this).find("li:nth-child(1)").css({
 				webkitTransform: "rotateX(0deg) rotateY(-35deg) translateZ(600px)",
@@ -258,13 +258,13 @@ jQuery(document).ready(function(){
 
 			explode_stations = 1;
 
-			$(".item-station-type").hover(function(){
+			$(".list-item").hover(function(){
 				$(this).css({
 					zIndex: 3,
 					opacity: 1.0
 				});
 			}, function(){
-				$(".item-station-type").css({
+				$(".list-item").css({
 					zIndex: 0,
 					opacity: 0.2
 					});
@@ -272,7 +272,7 @@ jQuery(document).ready(function(){
 			);
 
 		} else {
-			$(".item-station-type").css({
+			$(".list-item").css({
 				webkitTransform: 'rotate(0) translate(0)',
 				opacity: 1.0
 			});

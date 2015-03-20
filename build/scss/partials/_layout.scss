@@ -4,25 +4,19 @@
 
 // * { @include outline; }
 
-html { height: 100%;}
+html { height: 100%; }
 
 body {
+  background: $color-header-background;
   color: darken($color-header, 20%);
-  font: $font-body;
-  height: 100%;
-  overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
-  text-transform: uppercase;
 
   @include position;
   @include transition(transform 1s ease);
-  @include media($big) { background: url('../img/background.svg') center -8% / cover no-repeat $color-header-background; }
-  @include media($medium) {
-    background: url('../img/background-ipad.svg') center top / cover no-repeat $color-header-background;
-    width: 1024px;
-    overflow-x: hidden;
+  @include media($big) { background: url('../img/background.svg') center top / cover no-repeat $color-header-background; }
+  // @include media($medium) { background: url('../img/background-ipad.svg') center top / cover no-repeat $color-header-background; }
+  @include media($small) { background: url('../img/background-iphone.svg') center 20% / 320% no-repeat $color-header-background;
   }
-  @include media($small) { background: url('../img/background-iphone.svg') center 20% / 320% no-repeat $color-header-background; font-size: 75%; }
 }
 
 .placeholder { background-color: $color-placeholder; }
@@ -35,38 +29,37 @@ body {
     @include media($big) { @include span-columns(12); @include shift(4); }
     @include media($medium) { @include span-columns(12); @include shift(3); }
     @include media($small) { @include span-columns(6); @include shift(1); }
-
-    // z-index: 2;
+    @include omega;
   }
 }
 
 
 .content-section {
-  // @include media($big) { @include span-columns(12 of 12); }
-  // @include media($medium)  { @include span-columns(12 of 12); }
-  // @include media($small)  { @include span-columns(6 of 6); }
-  @include fill-parent;
+  @include media($big) { @include span-columns(12 of 12); }
+  @include media($medium) { @include span-columns(12 of 12); }
+  @include media($small) { @include span-columns(6 of 6); }
+  @include omega;
 
   .section-header {
     z-index: 100;
+
     @include transform(translateZ(1px));
-    @include position(-webkit-sticky, 0 0 0 0);
+    @include position(-webkit-sticky, 0 0);
     @include position(sticky, 0 0 0 0);
+    @include omega;
 
     @include media($big) {
+      height: 8rem;
       @include span-columns(12 of 12);
       @include shift(-4);
-      @include margins(1, 1);
-
-      height: 8rem;
+      @include margins(1, 0);
     }
 
     @include media($medium) {
-      @include span-columns(9 of 12);
+      height: 3.5rem;
+      @include span-columns(6 of 12);
       @include shift(-2);
       @include paddings(1, 0);
-      @include margins(0, 1);
-      height: 5rem;
     }
 
     @include media($small) {
@@ -79,32 +72,29 @@ body {
 
     .section-title,
     .overlay-svg {
-      @include fill-parent();
       height: 100%;
+
+      @include fill-parent();
     }
 
     .overlay {
+      stroke-linecap: round;
+
       @include media($big) { stroke-width: 256px;  }
       @include media($medium) { stroke-width: 80px;  }
       @include media($small) { stroke-width: 40px; }
-
-      stroke-linecap: round;
     }
 
     text {
       fill: $color-header-background;
-      font: $font-title;
       stroke: none;
 
-      @include media($medium) {
-        font-size: 3.8rem;
-        line-height: 3.8rem;
-      }
-
-      @include media($small) {
-        font: $font-header;
-        font-family: miso-bold;
-      }
+      //todo: move this to _type
+      // @include media($medium) { @include rhythm(2, 0, 0); }
+      // @include media($small) {
+      //   font: $font-header;
+      //   font-family: miso-bold;
+      // }
     }
 
     .outer-circle { fill: $color-header-background; stroke: none; }
@@ -112,12 +102,12 @@ body {
   }
 
   .section-content {
-    // @include fill-parent;
-    @include media($big) { @include position(2rem 0 0 0); }
-    @include media($medium) { @include position(3rem 0 0 0); }
-    @include media($small) { @include position(3rem 0 0 0); }
-
     clear: left;
+
+    @include fill-parent;
+    // @include media($big) { @include position(2rem 0 0 0); }
+    // @include media($medium) { @include position(3rem 0 0 0); }
+    // @include media($small) { @include position(3rem 0 0 0); }
   }
 }
 
@@ -128,15 +118,19 @@ body {
 .main-footer {
   @include outer-container;
 
-  div {
-    p {
-      font: $font-caption;
-      // text-align: right;
+  padding-right: .5rem;
+  text-align: right;
 
-      @include margins(4, 1);
-      @include media($big) { padding-right: .5rem; }
-      @include media($medium) { @include shift(-1); }
-      @include media($small) { @include shift(-1); }
-    }
-  }
+
+  // div {
+  //   p {
+  //     font: $font-caption;
+  //     // text-align: right;
+  //
+  //     @include margins(4, 1);
+  //     @include media($big) { padding-right: .5rem; }
+  //     @include media($medium) { @include shift(-1); }
+  //     @include media($small) { @include shift(-1); }
+  //   }
+  // }
 }

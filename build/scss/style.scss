@@ -11,6 +11,7 @@
 @import "libs/bourbon/bourbon";
 @import "globals/grid_settings";
 @import "libs/neat/neat";
+@import "globals/mixins";
 
 
 // Globals
@@ -18,7 +19,6 @@
 
 @import "globals/colors";
 @import "globals/typography";
-@import "globals/mixins";
 @import "globals/animations";
 
 
@@ -33,6 +33,3 @@
 @import "partials/stations";
 @import "partials/trains";
 @import "partials/users";
-
-
-

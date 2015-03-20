@@ -14,7 +14,6 @@
     @include media($big) { @include span-columns(9 of 12); }
     @include media($medium) { @include span-columns(9 of 12); }
     @include media($small) { @include span-columns(6 of 6); }
-
     @include margins(0, 1);
   }
 
@@ -32,15 +31,16 @@
   }
 
   svg.chart {
-    @include fill-parent;
     background-color: $color-chart-background;
+
+    @include fill-parent;
+
+    line { stroke: $color-chart-ticks; }
 
     rect {
       fill: $color-map-orange;
       stroke: none;
     }
-
-    line { stroke: $color-chart-ticks; }
 
 
     &.user-stats-gender {
@@ -50,44 +50,28 @@
       }
     }
 
-    &.user-stats-age {    font: $font-caption; }
-    &.user-stats-origin { font: $font-caption; }
-    &.user-stats-income { font: $font-caption; }
+    &.user-stats-age,
+    &.user-stats-origin,
+    &.user-stats-income { @extend .epsilon; fill: $color-text; }
   }
 }
 
 
 .station-nav {
   @include margins(1, 0);
-
-  @include media($big) {
-    @include span-columns(3 of 12);
-    @include omega;
-  }
-
-  @include media($medium) {
-    @include span-columns(3 of 12);
-    @include omega;
-  }
-
+  @include span-columns(3 of 12);
+  @include omega;
   @include media($small) { display: none; }
 
-
-  .hide {
-    height: 0;
-    overflow: hidden;
-  }
-
   .list-station {
-    font: $font-caption;
+    @extend .epsilon;
+    @include typeface-miso-light;
     text-align: right;
-
-    .name { padding-right: .5rem; }
 
     .item-station:hover {
       background-color: $color-map-orange;
       color: $color-header-background;
       cursor: pointer;
-      }
     }
   }
+}

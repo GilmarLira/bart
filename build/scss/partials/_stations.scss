@@ -2,100 +2,17 @@
 // Stations
 // ///////////////////////////////////////////////////////////////
 
-.content-section.stations{
-	@include perspective(1800px);
-	@include perspective-origin(30% 30%);
-	@include transform-style(preserve-3d);
-	@include transform-origin(50% 50%);
+.content-section.stations {
+  @extend .lines;
 
-	.overlay-svg {	stroke: $color-map-blue;	}
+  .overlay-svg {  stroke: $color-map-blue;  }
+  .list-item { background: $color-map-blue; }
 
-	.section-content{ 
-		@include media($medium)	{ @include position(2rem 0 0 0); }
-	}
+  // Kerning the huge numbers
+  .display {
+    span { margin: 0 !important; } // zero-out inherited values from .lines
 
-	.list-station-type{
-		height: 17rem;
-
-		@include transform-style(preserve-3d);
-
-		@include media($big) {
-			@include span-columns(8 of 12);
-			@include position(relative, 3rem 0 0 8rem);
-
-			&:hover{	
-				.item-station-type{ 
-					&:nth-child(1){		@include transform(rotateY(-40deg));}				
-					&:nth-child(2){		@include transform(rotateY(-40deg));}				
-					&:nth-child(3){		@include transform(rotateY(-40deg));}
-					&:nth-child(4){		@include transform(rotateY(-40deg) translateZ(10px));}
-				}
-			}
-		}
-		@include media($medium) {
-			@include span-columns(8 of 12);
-			@include position(relative, 3rem 0 0 8rem);
-		}
-		@include media($small) {
-			@include span-columns(6 of 8);
-			// @include position(relative, 3rem 0 0 8rem);
-		}
-
-
-		.item-station-type{
-			@include paddings(1, 1);
-			@include transform-origin(50% 50%);
-			@include transition(-webkit-transform 2s, opacity 1s);
-
-			@include media($small)	{ @include shift(2); }
-
-			width:	15rem;
-			height: 15rem;
-			border-radius: 50%;
-			background-color: $color-map-blue;
-			text-align: center;
-			color: $color-header-background;
-
-			.station-type.amount{
-				@include media($big)	{ @include span-columns(8 of 8); }
-				@include media($medium)	{ @include span-columns(8 of 8); }
-				@include media($small)	{ @include span-columns(6 of 6); }
-
-				font:  $font-title;
-				font-size: 8rem;
-			}
-
-			// Kerning the huge numbers
-			&:nth-child(1)	{ .amount .char1 { margin-left: -.5rem; } .amount .char2 { margin-left: -.5rem; }}
-			&:nth-child(2)	{ .amount .char1 { margin-left: -.5rem; } .amount .char2 { margin-left: -.5rem; }}
-			&:nth-child(3)	{ .amount .char1 { margin-left: -.5rem; } .amount .char2 { margin-left: -.5rem; }}
-			// &:nth-child(4)	{ .amount .char2 { margin-left: rem; } }
-
-			.station-type.desc{
-				font-family: miso-bold;
-
-				@include media($big)	{ @include span-columns(8 of 8); }
-				@include media($medium)	{ @include span-columns(8 of 8); font: $font-subheader; }
-				@include media($small)	{ @include span-columns(6 of 6); font: $font-subheader; }
-
-			}
-
-			span {
-				&:nth-child(1){ 
-					@include media($big)	{ margin-top: 10%; }
-					@include media($medium)	{ margin-top: 8%; }
-					@include media($small)	{ margin-top: 5%; }
-				}
-				&:nth-child(2){ 
-					@include media($medium)	{ margin-top: -4%; }
-					@include media($small)	{ margin-top: -5%; }
-				}
-			}
-
-			&:nth-child(1){		@include position(absolute, 0 0 0 0); @include transform(rotateX(0) translateZ(10px)); }
-			&:nth-child(2){		@include position(absolute, 0 0 0 0); }
-			&:nth-child(3){		@include position(absolute, 0 0 0 0); }
-			&:nth-child(4){		@include position(absolute, 0 0 0 0); }	
-		}
-	}
+    &:nth-child(-n+3) .char1,
+    &:nth-child(-n+3) .char2 { margin-left: -.5rem; }
+  }
 }

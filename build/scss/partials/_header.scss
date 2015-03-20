@@ -9,31 +9,22 @@
   width: 100%;
   z-index: 3;
 
-  // :-webkit-full-screen & { @include animation(fade-out 1s ease-in-out 4s both); }
-  // @include outer-container;
-  // @include transition(background-color 2s ease-in-out .5s);
   @include position;
   @include media($big) { @include animation(background-fade-out 2s ease-in-out 8s both); }
   @include media($medium) { @include animation(background-fade-out 2s ease-in-out 8s both); }
   @include media($small) { @include animation(background-fade-out 2s ease-in-out 8s both); }
 
   .tentativa {
-    z-index: 1;
-    :-webkit-full-screen & {  @include animation(flicker-in 3s ease-in 1s reverse both); }
-
     @include outer-container;
-    @include position(absolute, 20% 0 null 0);
+    @include media($big) { @include position(absolute, 20% 0 null 0); }
+    @include media($medium) { @include position(absolute, 30% 0 null 0); }
   }
 
   .main-title {
-    font: $font-title;
-    // font-size: $font-header-size;
-
     @include media($big) { @include span-columns(12); @include shift(2); }
-    @include media($medium) { @include span-columns(12); @include shift(2); }
+    @include media($medium) { @include span-columns(12); @include shift(1); }
     @include media($small) { @include span-columns(6); @include shift(1); }
-
-    :-webkit-full-screen & { @include animation(flicker-in 3s ease-in 1s reverse both); }
+    @include omega;
 
     .char1 { @include animation(flicker-in 2s ease-in both);  }
     .char2 { @include animation(flicker-in 2s ease-in both);  }
@@ -57,31 +48,38 @@
   .main-subtitle {
     @include animation(flicker-in 2s ease-in-out 4s both);
     @include media($big) { @include span-columns(12); @include shift(2); }
-    @include media($medium) { @include span-columns(12); @include shift(2); }
-    @include media($small) { @include span-columns(6); @include shift(1); @include margins(1, 1); font-size: $font-subheader-size; }
+    @include media($medium) { @include span-columns(12); @include shift(1); }
+    @include media($small) { @include span-columns(6); @include shift(1); }
+    @include omega;
   }
 
   .start-button {
     display: none;
     height: 8rem;
 
+    @include margins(1, 0);
     @include media($big) { display: block; }
     @include animation(fade-in 2s ease-in-out 8s both);
     @include outer-container;
     @include position(absolute, 45% 0 0 0);
     @include transition(-webkit-transform 2s ease-in-out .5s, opacity 1.8s ease-out .5s);
 
-    :-webkit-full-screen & { opacity: 0; }
+    :-webkit-full-screen & { display: none; }
 
     .overlay-svg {
       height: 8rem;
       @include span-columns(9 of 12);
+      &:hover {
+        cursor: pointer;
+
+        // .inner-circle { fill: $color-header-background; }
+        .overlay { stroke: darken($color-header, 30%); }
+      }
     }
 
     text {
       fill: $color-header-background;
-      font: $font-title;
-      font-size: $font-header-size;
+      @extend .alpha;
     }
 
     .overlay {
@@ -93,12 +91,7 @@
     .inner-circle { fill: $color-header; }
     .outer-circle { fill: $color-header-background; }
 
-    &:hover {
-      cursor: pointer;
 
-      // .inner-circle { fill: $color-header-background; }
-      .overlay { stroke: darken($color-header, 30%); }
-    }
 
   }
 }
