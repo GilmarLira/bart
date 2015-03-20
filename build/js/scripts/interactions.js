@@ -173,7 +173,7 @@ jQuery(document).ready(function(){
 	// var explode_lines = 0;
 
 	$(".list").click(function(){
-		$(this).find('.list-item').toggleClass("explode");
+		$(this).toggleClass("explode");
 	});
 
 	// $(".lines .list").click(function(){

@@ -2,7 +2,7 @@
 // Layout
 // ///////////////////////////////////////////////////////////////
 
-* { @include outline; }
+// * { @include outline(#fff); }
 
 html { height: 100%; }
 
@@ -35,10 +35,9 @@ body {
 
 
 .content-section {
-  @include media($big) { @include span-columns(12 of 12); }
-  @include media($medium) { @include span-columns(12 of 12); }
-  @include media($small) { @include span-columns(6 of 6); }
-  @include omega;
+  @include media($big) { @include span-columns(12 of 12); @include omega; }
+  @include media($medium) { @include span-columns(12 of 12); @include omega; }
+  @include media($small) { @include span-columns(6 of 6); @include omega; }
 
   .section-header {
     z-index: 100;
