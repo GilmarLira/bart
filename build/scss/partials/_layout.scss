@@ -13,7 +13,7 @@ body {
 
   @include position;
   @include transition(transform 1s ease);
-  @include media($big) { background: url('../img/background.svg') center top / cover no-repeat $color-header-background; }
+  // @include media($big) { background: url('../img/background.svg') center top / cover no-repeat $color-header-background; }
   // @include media($medium) { background: url('../img/background-ipad.svg') center top / cover no-repeat $color-header-background; }
   @include media($small) { background: url('../img/background-iphone.svg') center 20% / 320% no-repeat $color-header-background;  }
   @include user-select(none);

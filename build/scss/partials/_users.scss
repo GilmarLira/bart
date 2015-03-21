@@ -34,6 +34,7 @@
     background-color: $color-chart-background;
 
     @include fill-parent;
+    @include margins;
 
     line { stroke: $color-chart-ticks; }
 
