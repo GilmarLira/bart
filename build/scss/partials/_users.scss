@@ -3,6 +3,7 @@
 // ///////////////////////////////////////////////////////////////
 
 .content-section.users {
+
   .overlay-svg {  stroke: $color-map-orange;  }
 
   .section-content {
@@ -43,7 +44,6 @@
       stroke: none;
     }
 
-
     &.user-stats-gender {
       rect {
         &:nth-child(1) { fill: $color-chart-fill2; }
@@ -54,6 +54,21 @@
     &.user-stats-age,
     &.user-stats-origin,
     &.user-stats-income { @extend .epsilon; fill: $color-text; }
+  }
+
+  .axis {
+    path,
+    line {
+      fill: none;
+      stroke: $color-text;
+      // stroke-width: 1px;
+      shape-rendering: crispEdges;
+    }
+
+    text {
+      // stroke: none;
+
+    }
   }
 }
 

@@ -13,61 +13,110 @@ jQuery(document).ready(function(){
 	// else if (containerWidth > 480 && containerWidth < 1024 ) { ratio = .42; }
 	// else if (containerWidth > 1024 ) { ratio = .55; }
 
-	var width = 100;
-	var height 	= 150;
-	var duration = 500;
+	// console.log("width: " + $("#user-stats").width());
 
-	var graph_gender = d3.select("#user-stats-gender").append("svg") .attr("class", "user-stats-gender chart");
-	var graph_age = d3.select("#user-stats-age").append("svg") .attr("class", "user-stats-age chart");
-	var graph_origin = d3.select("#user-stats-origin").append("svg") .attr("class", "user-stats-origin chart");
-	var graph_income = d3.select("#user-stats-income").append("svg") .attr("class", "user-stats-income chart");
+	var margin = {left: 25, bottom: 30},
+	    width = $("#user-stats").width() - margin.left,
+	    height = 150 - margin.bottom,
+			duration = 500;
+
+	var graph_gender = d3.select("#user-stats-gender")
+		.append("svg")
+			.attr("class", "user-stats-gender chart")
+			.attr("width", width + margin.left)
+	    .attr("height", height + margin.bottom)
+  	.append("g");
+
+	var graph_age = d3.select("#user-stats-age")
+		.append("svg")
+			.attr("class", "user-stats-age chart")
+			.attr("width", width + margin.left)
+	    .attr("height", height + margin.bottom)
+  	.append("g")
+    	.attr("transform", "translate(" + margin.left + "," + 0 + ")");
+
+	var graph_origin = d3.select("#user-stats-origin")
+		.append("svg")
+			.attr("class", "user-stats-origin chart")
+			.attr("width", width + margin.left)
+	    .attr("height", height + margin.bottom)
+  	.append("g")
+    	.attr("transform", "translate(" + 3.6 * margin.left + "," + 0 + ")");
+
+	var graph_income = d3.select("#user-stats-income")
+		.append("svg")
+			.attr("class", "user-stats-income chart")
+			.attr("width", width + margin.left)
+	    .attr("height", height + margin.bottom)
+  	.append("g")
+    	.attr("transform", "translate(" + margin.left + "," + 0 + ")");
 
 
-	// Scales
+	// Scale & Axis
+	var x_age = d3.scale.ordinal()
+		.domain(captions.Age)
+		.rangeRoundBands([0, width]);
+
+	var x_age_axis = d3.svg.axis()
+		.scale(x_age)
+		.orient("bottom");
+
+	graph_age.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(x_age_axis);
+
+	var x_income = d3.scale.ordinal()
+		.domain(captions.Income)
+		.rangeRoundBands([0, width]);
+
+	var x_income_axis = d3.svg.axis()
+		.scale(x_income)
+		.orient("bottom");
+
+	graph_income.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(x_income_axis);
+
+	var y_origin = d3.scale.ordinal()
+	  .domain(captions.Origin)
+		.rangeRoundBands([0, height + margin.bottom]);
+
+	var y_origin_axis = d3.svg.axis()
+		.scale(y_origin)
+		.orient("left");
+
+	graph_origin.append("g")
+		.attr("class", "y axis")
+		.call(y_origin_axis);
 
 
 
 	function visualize(index){
-		station = 	stations[index];
+		station = stations[index];
 
-		var x_age = d3.scale.linear()
-		  .domain(station.Age)
-			.rangeRound([0, width]);
-
+		// Scales
 		var y_age = d3.scale.linear()
 			.domain([0, d3.max(station.Age)])
 	  	.rangeRound([0, height]);
 
-
 		var x_origin = d3.scale.linear()
 		  .domain([0, d3.max(station.Origin)])
-			.rangeRound([0, width]);
+			.rangeRound([0, width - 2.6 * margin.left]);
 
-		var y_origin = d3.scale.linear()
-		  .domain([0, 6])
-			.rangeRound([0, height]);
+		// var y_origin = d3.scale.linear()
+		//   .domain([0, 6])
+		// 	.rangeRound([0, height + margin.bottom]);
 
-
-		var x_income = d3.scale.linear()
-		  .domain([0, 8])
-			.range([0, width]);
+		//
+		// var x_income = d3.scale.linear()
+		//   .domain([0, 8])
+		// 	.range([0, width]);
 
 		var y_income = d3.scale.linear()
 			.domain([0, d3.max(station.Income)])
 	    .rangeRound([0, height]);
-
-
-		console.log("Gender: ");
-		console.log(station.Gender);
-
-		console.log("Age: ");
-		console.log(station.Age);
-
-		console.log("Origin: ");
-		console.log(station.Origin);
-
-		console.log("Income: ");
-		console.log(station.Income);
 
 
 		// Gender update
@@ -76,28 +125,30 @@ jQuery(document).ready(function(){
 			.attr("class", "update")
 			.transition()
 			.duration(duration)
-			.attr("width", function(d, i){ if(i == 0) {return "100%";} else { return d + "%";}});
+			.attr("width", function(d, i){ return i===0 ? "100%" : d +"%"; });
 
 		graph_gender.selectAll("text")
 			.data(stations[index].Gender)
 			.attr("class", "update")
 			.transition()
 			.duration(duration)
-			.text(String);
+			.text(function(d) { return d + "%"; });
 
 		// Gender Enter
 		graph_gender.selectAll("rect")
 			.data(station.Gender)
 			.enter().append("rect")
-			.attr("width", function(d, i) { if(i == 0) {return "100%";} else { return d + "%";}})
-			.attr("height", height);
+			.attr("width", function(d, i){ return i === 0 ? "100%" : d +"%"; })
+			.attr("height", height + margin.bottom);
 
 	  graph_gender.selectAll("text")
 			.data(station.Gender)
 			.enter().append("text")
 		  .attr("y", "55%")
-		  .attr("x", function(d, i) { if (i == 1) { return width/10 + "%"; } else { return width*0.9 + "%"; } })
-			.text(String);
+		  // .attr("x", function(d, i) { if (i == 1) { return width/10 + "%"; } else { return width*0.9 + "%"; } })
+		  .attr("x", function(d, i) { return i == 1 ? "5%" : "88%"; })
+			.text(function(d) { return d + "%"; });
+
 
 
 		// Age enter
@@ -112,18 +163,20 @@ jQuery(document).ready(function(){
 		graph_age.selectAll("rect")
 			.data(station.Age)
 	    .enter().append("rect")
-	    .attr("x", function(d, i) { return i * width/8 + "%";})
-	    // .attr("y", function(d) { return height - y_age(d) + "px"; })
-	    .attr("width", width/8-1+"%");
-			// .attr("height", function(d) { return y_age(d) + "px"; });
+	    .attr("x", function(d, i) { return i * width/8;})
+	    .attr("width", width/8-4);
 
     // graph_age.selectAll("text")
 	  //   .data(station.Age)
 		//   .enter().append("text")
-	  //   .attr("x", x_age)
-	  //   .attr("y", "90%")
-	  //   .attr("dx", x_age.rangeBand()/2)
-	  //   .text(String);
+	  //   .attr("x", function(d, i) { return width/16 + (i * (width/8)-1);})
+	  //   .attr("y", "100%");
+
+		// graph_age.selectAll("text")
+	  //   .data(captions.Age)
+		//   .enter().append("text")
+	  //   .attr("x", x_age.rangeBand()/2)
+	  //   .attr("y", "100%");
 
 		// Age update
 		graph_age.selectAll("rect")
@@ -134,8 +187,10 @@ jQuery(document).ready(function(){
 			.attr("y", function(d){ return (height - y_age(d)) + "px"; })
 			.attr("height", function(d) { return y_age(d) + "px"; });
 
-		graph_age.selectAll("text")
-		    .text(String);
+		// graph_age.selectAll("text")
+		// .attr("dx", function(d) { return (+d>10) ? "-.5em" : "-.25em"; })
+		// .text(function(d) { return d + "%"; });
+
 
 
 		// Origin enter
@@ -151,19 +206,19 @@ jQuery(document).ready(function(){
 			.data(station.Origin)
 	    .enter().append("rect")
 			// .attr("y", function(d, i) { return y_origin(i) + "px"; })
-			.attr("y", function(d, i) { return y_origin(i); })
+			// .attr("y", function(d, i) { return y_origin(i); })
+			.attr("y", function(d, i) { return y_origin(captions.Origin[i]); })
 	    .attr("width", function(d) { return d + "%"; })
-			.attr("height", "20");
+			.attr("height", y_origin.rangeBand()-4);
 
 	  // graph_origin.selectAll("text")
 		//   .data(station.Origin)
 		//   .enter().append("text")
-	  //   .attr("x", 0)
- 	 //    .attr("y", function(d, i){ return i*32 + 14;})
+	  //   .attr("x", "0%")
+ 	 //    .attr("y", function(d, i) { return (height + margin.bottom) / 18 + i * (height + margin.bottom) / 6; })
 	  //   .attr("dx", -5) // padding-right
 	  //   .attr("dy", ".35em") // vertical-align: middle
-	  //   .attr("text-anchor", "end") // text-align: right
-		// 	.text(String);
+	  //   .attr("text-anchor", "end");
 
 		// Origin update
 		graph_origin.selectAll("rect")
@@ -171,7 +226,11 @@ jQuery(document).ready(function(){
 			.attr("class", "update")
 			.transition()
 			.duration(duration)
-			.attr("width", function(d) { return x_origin(d) + "%"; });
+			.attr("width", function(d) { return x_origin(d); });
+
+		// graph_origin.selectAll("text")
+		// 	.text(function(d) { return d + "%"; });
+			// .text(function(d, i) { return captions.Origin[i]; });
 
 
 		// Income enter
@@ -186,18 +245,14 @@ jQuery(document).ready(function(){
 		graph_income.selectAll("rect")
 			.data(station.Income)
 			.enter().append("rect")
-			.attr("x", function(d, i) { return i * width/8 + "%";})
-			// .attr("y", function(d){ return 192 - y_income(d);})
-			.attr("width", width/8-1+"%")
-			// .attr("height", y_income);
+			.attr("x", function(d, i) { return i * width/8;})
+			.attr("width", width/8-4);
 
 		// graph_income.selectAll("text")
 		// 	.data(station.Income)
 		// 	.enter().append("text")
-		// 	.attr("x", function(d, i) { return i*width/8;})
-		// 	.attr("y", "90%")
-		// 	.attr("dx", 38)
-		// 	.text(String);
+		// 	.attr("x", function(d, i) { return width/16 + (i * (width/8)-1);})
+		// 	.attr("y", "100%");
 
 		// Income update
 		graph_income.selectAll("rect")
@@ -208,9 +263,10 @@ jQuery(document).ready(function(){
 			.attr("y", function(d){ return height - y_income(d);})
 			.attr("height", y_income);
 
-
+		// graph_income.selectAll("text")
+		// 	.attr("dx", function(d) { return (+d>10) ? "-.5em" : "-.25em"; })
+		// 	.text(function(d) { return d + "%"; });
 	}
-
 
 	jQuery(".item-station").hover(function(){
 		index = $(this).index();
