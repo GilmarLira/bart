@@ -15,7 +15,7 @@ jQuery(document).ready(function(){
 
 	// console.log("width: " + $("#user-stats").width());
 
-	var margin = {left: 25, bottom: 30},
+	var margin = {left: 90, bottom: 30},
 	    width = $("#user-stats").width() - margin.left,
 	    height = 150 - margin.bottom,
 			duration = 500;
@@ -41,7 +41,7 @@ jQuery(document).ready(function(){
 			.attr("width", width + margin.left)
 	    .attr("height", height + margin.bottom)
   	.append("g")
-    	.attr("transform", "translate(" + 3.6 * margin.left + "," + 0 + ")");
+    	.attr("transform", "translate(" + margin.left + "," + 0 + ")");
 
 	var graph_income = d3.select("#user-stats-income")
 		.append("svg")
@@ -52,40 +52,78 @@ jQuery(document).ready(function(){
     	.attr("transform", "translate(" + margin.left + "," + 0 + ")");
 
 
-	// Scale & Axis
+	// Scale
 	var x_age = d3.scale.ordinal()
 		.domain(captions.Age)
 		.rangeRoundBands([0, width]);
 
-	var x_age_axis = d3.svg.axis()
-		.scale(x_age)
-		.orient("bottom");
-
-	graph_age.append("g")
-			.attr("class", "x axis")
-			.attr("transform", "translate(0," + height + ")")
-			.call(x_age_axis);
+	var y_age = d3.scale.linear()
+		.domain([0, 45])
+		.rangeRound([height, 0]);
 
 	var x_income = d3.scale.ordinal()
 		.domain(captions.Income)
 		.rangeRoundBands([0, width]);
 
+	var y_income = d3.scale.linear()
+		.domain([0, 45])
+		.rangeRound([height, 0]);
+
+	var x_origin = d3.scale.linear()
+		.domain([0, 100])
+		.rangeRound([0, width]);
+
+	var y_origin = d3.scale.ordinal()
+	  .domain(captions.Origin)
+		.rangeRoundBands([0, height + margin.bottom]);
+
+
+
+	// Axis
+	var x_age_axis = d3.svg.axis()
+		.scale(x_age)
+		.orient("bottom");
+
+	var y_age_axis = d3.svg.axis()
+		.scale(y_age)
+		.orient("left")
+		.ticks(3)
+		.tickFormat(function(d) { return d + "%"; });
+
 	var x_income_axis = d3.svg.axis()
 		.scale(x_income)
 		.orient("bottom");
+
+	var y_income_axis = d3.svg.axis()
+		.scale(y_income)
+		.orient("left")
+		.ticks(3)
+		.tickFormat(function(d) { return d + "%"; });
+
+	var y_origin_axis = d3.svg.axis()
+		.scale(y_origin)
+		.orient("left");
+
+
+	// Plot axis
+	graph_age.append("g")
+			.attr("class", "x axis")
+			.attr("transform", "translate(0," + height + ")")
+			.call(x_age_axis);
+
+	graph_age.append("g")
+		.attr("class", "y axis")
+		.call(y_age_axis);
 
 	graph_income.append("g")
 			.attr("class", "x axis")
 			.attr("transform", "translate(0," + height + ")")
 			.call(x_income_axis);
 
-	var y_origin = d3.scale.ordinal()
-	  .domain(captions.Origin)
-		.rangeRoundBands([0, height + margin.bottom]);
-
-	var y_origin_axis = d3.svg.axis()
-		.scale(y_origin)
-		.orient("left");
+	graph_income.append("g")
+			.attr("class", "y axis")
+			// .attr("transform", "translate(0," + height + ")")
+			.call(y_income_axis);
 
 	graph_origin.append("g")
 		.attr("class", "y axis")
@@ -96,27 +134,13 @@ jQuery(document).ready(function(){
 	function visualize(index){
 		station = stations[index];
 
-		// Scales
-		var y_age = d3.scale.linear()
-			.domain([0, d3.max(station.Age)])
-	  	.rangeRound([0, height]);
-
-		var x_origin = d3.scale.linear()
-		  .domain([0, d3.max(station.Origin)])
-			.rangeRound([0, width - 2.6 * margin.left]);
-
 		// var y_origin = d3.scale.linear()
 		//   .domain([0, 6])
 		// 	.rangeRound([0, height + margin.bottom]);
 
-		//
 		// var x_income = d3.scale.linear()
 		//   .domain([0, 8])
 		// 	.range([0, width]);
-
-		var y_income = d3.scale.linear()
-			.domain([0, d3.max(station.Income)])
-	    .rangeRound([0, height]);
 
 
 		// Gender update
@@ -184,8 +208,10 @@ jQuery(document).ready(function(){
 			.attr("class", "update")
 			.transition()
 			.duration(duration)
-			.attr("y", function(d){ return (height - y_age(d)) + "px"; })
-			.attr("height", function(d) { return y_age(d) + "px"; });
+			// .attr("y", function(d){ return (height - y_age(d)); })
+			.attr("y", function(d) { return y_age(d); })
+			.attr("height", function(d) { return height - y_age(d); })
+			.attr("data", function(d) { return d; });
 
 		// graph_age.selectAll("text")
 		// .attr("dx", function(d) { return (+d>10) ? "-.5em" : "-.25em"; })
@@ -260,8 +286,8 @@ jQuery(document).ready(function(){
 			.attr("class", "update")
 			.transition()
 			.duration(duration)
-			.attr("y", function(d){ return height - y_income(d);})
-			.attr("height", y_income);
+			.attr("y", function(d){ return y_income(d); })
+			.attr("height", function(d) { return height - y_income(d); });
 
 		// graph_income.selectAll("text")
 		// 	.attr("dx", function(d) { return (+d>10) ? "-.5em" : "-.25em"; })

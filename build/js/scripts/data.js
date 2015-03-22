@@ -3,14 +3,14 @@
 
 // Stations
 
-// Gender: Male / Female
-// Age: 13-17 / 18-24 / 25-34 / 35-44 / 45-54 / 55-64 / 65-74 / 75+
-// Origin: Walked / Taxi / Motorcycle / Bicycle / Bus, Train, Other / Car
-// Income: Under $15k / $15-25k / $25-50k / $50-75k / $75-100k / $100-150k / $150-200k / $200k+
+// Max
+// Age: 43 (25-34 yo)
+// Origin: 92 (car)
+// Income: 38 (200k$+)
 var captions = {
 	Gender: ["Male", "Female"],
 	Age: ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65-74", "75+"],
-	Origin: ["Walk", "Taxi", "Motor/Bike", "Bus/train", "Car"],
+	Origin: ["Walk", "Taxi", "Motorcycle", "Bike", "Bus/train", "Car"],
 	Income: ["Under $15k", "$15-25k", "$25-50k", "$50-75k", "$75-100k", "$100-150k", "$150-200k", "$200k+"]
 };
 
