@@ -87,7 +87,8 @@ h5,
 
 h6,
 .zeta {
-  @include rhythm(-2, 0, 0);
+  @include typeface-miso-light;
+  @include rhythm(-1, 0, 0);
 }
 
 p,

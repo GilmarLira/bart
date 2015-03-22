@@ -117,19 +117,15 @@ body {
 .main-footer {
   @include outer-container;
 
-  padding-right: .5rem;
-  text-align: right;
+  p {
+    @extend .epsilon;
 
+    padding-right: .5em;
+    text-align: right;
 
-  // div {
-  //   p {
-  //     font: $font-caption;
-  //     // text-align: right;
-  //
-  //     @include margins(4, 1);
-  //     @include media($big) { padding-right: .5rem; }
-  //     @include media($medium) { @include shift(-1); }
-  //     @include media($small) { @include shift(-1); }
-  //   }
-  // }
+    @include margins(2, 1);
+    @include media($big) {  @include fill-parent;   }
+    @include media($medium) { @include span-columns(15 of 16);  }
+    @include media($small) { @include shift(-1); }
+  }
 }

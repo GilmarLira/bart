@@ -13,7 +13,7 @@
 
   .list-user-stats {
     @include media($big) { @include span-columns(9 of 12); }
-    @include media($medium) { @include span-columns(9 of 12); }
+    @include media($medium) { @include span-columns(10 of 12); @include shift(-1); }
     @include media($small) { @include span-columns(6 of 6); }
     @include margins(0, 1);
   }
@@ -53,7 +53,7 @@
 
     &.user-stats-age,
     &.user-stats-origin,
-    &.user-stats-income { @extend .epsilon; fill: $color-text; }
+    &.user-stats-income { @extend .zeta; fill: $color-text; }
   }
 
   .axis {
@@ -61,33 +61,43 @@
     line {
       fill: none;
       stroke: $color-text;
-      // stroke-width: 1px;
       shape-rendering: crispEdges;
-    }
-
-    text {
-      // stroke: none;
-
     }
   }
 }
 
 
 .station-nav {
-  @include margins(1, 0);
   @include span-columns(3 of 12);
   @include omega;
   @include media($small) { display: none; }
 
   .list-station {
     @extend .epsilon;
-    @include typeface-miso-light;
+    // @include typeface-miso-light;
     text-align: right;
 
-    .item-station:hover {
-      background-color: $color-map-orange;
-      color: $color-header-background;
-      cursor: pointer;
+    .item-station {
+      height: 1.2em;
+      line-height: 1em;
+      overflow: hidden;
+    }
+
+    .station {
+      display: block;
+      height: 1.2em;
+      padding: .1em .5em .1em .25em;
+      padding-left: .25em;
+      padding-right: .5em;
+      margin: 0;
+      border-radius: .6em;
+
+      &:hover {
+        background-color: $color-map-orange;
+        color: $color-header-background;
+        // color: $color-map-orange;
+        cursor: pointer;
+      }
     }
   }
 }

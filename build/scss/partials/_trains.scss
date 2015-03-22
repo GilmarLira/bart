@@ -105,10 +105,11 @@
   .car.name {
     background: $color-map-red;
     border-radius: 15%;
-    color: white;
+    color: #fff;
     text-align: center;
 
     @extend .gamma;
+
     @include media($big) {
       // height: 4.4rem;
       line-height: 4.4rem;
@@ -145,14 +146,14 @@
       @include paddings(.5, 0);
     }
 
-    @include media($medium)  {
+    @include media($medium) {
       // height: 4.4rem;
 
       @include span-columns(6 of 12);
       @include paddings(.5, 0);
     }
 
-    @include media($small)  {
+    @include media($small) {
       clear: left;
       font: $font-subheader;
       height: 10rem;
