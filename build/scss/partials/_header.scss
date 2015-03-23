@@ -5,25 +5,25 @@
 #cab {
   background-color: $color-header-background;
   color: $color-header;
-  height: 100%;
-  width: 100%;
-  z-index: 3;
-
   @include position;
   @include media($big) { @include animation(background-fade-out 2s ease-in-out 8s both); }
   @include media($medium) { @include animation(background-fade-out 2s ease-in-out 8s both); }
   @include media($small) { @include animation(background-fade-out 2s ease-in-out 8s both); }
 
+  .section-content {
+    @include clearfix;
+    @include position(30% 0 null 0);
+    @include media($big) { @include position(20% 0 null 0); @include shift(-4); }
+  }
+
   .tentativa {
-    @include outer-container;
-    @include position(absolute, 30% 0 null 0);
-    @include media($big) { @include position(absolute, 20% 0 null 0); }
+    @include fill-parent();
   }
 
   .main-title {
     @include media($big) { @include span-columns(12); @include shift(2); }
-    @include media($medium) { @include span-columns(12); @include shift(1); }
-    @include media($small) { @include span-columns(15); @include shift(.5); }
+    @include media($medium) { @include span-columns(15); @include shift(1); }
+    @include media($small) { @include span-columns(14 of 14); @include shift(-.5); }
     @include omega;
 
     .char1 { @include animation(flicker-in 2s ease-in both);  }
@@ -48,47 +48,35 @@
   .main-subtitle {
     @include animation(flicker-in 2s ease-in-out 4s both);
     @include media($big) { @include rhythm(2); @include span-columns(12); @include shift(2); }
-    @include media($medium) { @include rhythm(2); @include span-columns(12); @include shift(1); }
-    @include media($small) { @include span-columns(15); @include shift(.5); }
+    @include media($medium) { @include rhythm(1); @include span-columns(15); @include shift(1); }
+    @include media($small) { @include span-columns(15 of 14); @include shift(-.5); }
     @include omega;
   }
 
-  .start-button {
-    display: none;
-    height: 11rem;
 
-    @include margins(1, 0);
+  .section-header {
+    @include position(-webkit-sticky, 50% 0);
+    @include position(sticky, 50% 0 0 0);
+  }
+
+  .section-title {
+    display: none;
     @include media($big) { display: block; }
     @include animation(fade-in 2s ease-in-out 8s both);
-    @include outer-container;
-    @include position(absolute, 45% 0 0 0);
     @include transition(-webkit-transform 2s ease-in-out .5s, opacity 1.8s ease-out .5s);
 
     :-webkit-full-screen & { display: none; }
 
     .overlay-svg {
-      height: 11rem;
-
-      @include span-columns(9 of 12);
       &:hover {
         cursor: pointer;
         .overlay { stroke: darken($color-header, 30%); }
       }
     }
 
-    text {
-      @extend .beta;
-      @include media($big) { @include rhythm(5); }
-      fill: $color-header-background;
-    }
-
-    .overlay {
-      stroke: lighten($color-header-background, 20%);
-      stroke-linecap: round;
-      stroke-width: 256px;
-    }
-
-    .inner-circle { fill: $color-header; }
-    .outer-circle { fill: $color-header-background; }
+    .overlay { stroke: lighten($color-header-background, 20%); }
   }
+
+  .section-header text { @include media($big) { @include rhythm(5); } }
+
 }

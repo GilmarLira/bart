@@ -27,43 +27,55 @@ function initContainer() {
 	console.log(containerWidth);
 	console.log(window.orientation);
 
-	if (containerWidth < 480) {
+	if (containerWidth < 768) {
 		console.log("iPhone!");
+		if(window.orientation == 90 || window.orientation == -90 ){
+			$(".main-header").css({ height: containerHeight	});
+			$(".content-section.map").css({ height: containerHeight * 2 });
+			$(".content-section.lines").css({ height: containerHeight * 2.7 });
+			$(".content-section.stations").css({ height: containerHeight * 2.7 });
+			$(".content-section.trains").css({ height: containerHeight * 2.8 });
+			$(".content-section.users").css({ "min-height": containerHeight * 3.6 });
+		} else {
+			$(".main-header").css({ height: containerHeight	});
+			$(".content-section.map").css({ height: containerHeight * 1.3 });
+			$(".content-section.lines").css({ height: containerHeight * 1.2 });
+			$(".content-section.stations").css({ height: containerHeight * 1.2 });
+			$(".content-section.trains").css({ height: containerHeight * 4 });
+			$(".content-section.users").css({ "min-height": containerHeight * 1.2 });
+		}
+	}
 
-		$(".main-header").css({ height: containerHeight	});
-		$(".content-section.map").css({ height: containerHeight * 0.3 });
-		$(".content-section.lines").css({ height: containerHeight * 1.2 });
-		$(".content-section.stations").css({ height: containerHeight * 1.2 });
-		$(".content-section.trains").css({ height: containerHeight * 4 });
-		$(".content-section.users").css({ height: containerHeight * 1.2 }); }
-
-	else if(containerWidth > 480 && containerWidth < 1025) {
+	else if(containerWidth >= 768 && containerWidth < 1025) {
 		console.log("iPad!");
+		console.log("");
 
 		if(window.orientation == 90 || window.orientation == -90 ){
 			$(".main-header").css({ height: containerHeight * 1.02	});
-			$(".content-section.map").css({ height: containerHeight * 0.4 });
-			$(".content-section.lines").css({ height: containerHeight * 1.6 });
-			$(".content-section.stations").css({ height: containerHeight * 1.6 });
-			$(".content-section.trains").css({ height: containerHeight * 1.8 });
-			$(".content-section.users").css({ height: containerHeight * 1.9 });
+			$(".content-section.map").css({ height: containerHeight * 1.2 });
+			$(".content-section.lines").css({ height: containerHeight * 1.5 });
+			$(".content-section.stations").css({ height: containerHeight * 1.5 });
+			$(".content-section.trains").css({ height: containerHeight * 1.6 });
+			$(".content-section.users").css({ height: containerHeight * 2 });
 		} else {
 			$(".main-header").css({ height: containerHeight * 1.02	});
-			$(".content-section.map").css({ height: containerHeight * 0.3 });
+			$(".content-section.map").css({ height: containerHeight * 0.9 });
 			$(".content-section.lines").css({ height: containerHeight * 1.0 });
 			$(".content-section.stations").css({ height: containerHeight * 1.0 });
 			$(".content-section.trains").css({ height: containerHeight * 1.1 });
-			$(".content-section.users").css({ height: containerHeight * 1.1 });
+			$(".content-section.users").css({ height: containerHeight * 1.5 });
 		}
 	} else if(containerWidth > 1024) {
 		console.log("Mac!");
 
 		$(".main-header").css({ height: containerHeight * 1.02	});
-		$(".content-section.map").css({ height: containerHeight * 0.4 });
+		$(".content-section.map").css({ height: containerHeight * 1.5});
 		$(".content-section.lines").css({ height: containerHeight * 1.2 });
 		$(".content-section.stations").css({ height: containerHeight * 1.2 });
 		$(".content-section.trains").css({ height: containerHeight * 1.4 });
-		$(".content-section.users").css({ height: containerHeight * 1.2 });
+		$(".content-section.users").css({ "min-height": containerHeight * 1.3 });
+		$(".map .section-content").css({ width: containerWidth }).offset({ left: 0});
+
 	}
 
 	redrawSVG();
@@ -141,6 +153,7 @@ function redrawSVG(){
 
 		$(".section-title text").attr('dx', textDX);
 		$(".section-title text").attr('dy', textDY);
+		$(".main-header .section-title text").attr('dy', "65%");
 	}
 }
 

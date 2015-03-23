@@ -2,39 +2,28 @@
 // Map
 // /////////////////////////////////////////////////////
 
-.frickin-map-crazy-ass-sublayer {
-  @include transform(translate3d(0));
-  @include media($big) { height: 60vh; }
-  @include media($medium) { height: 650px;}
-  @include media($small) { height: 600px;}
 
-  overflow: hidden;
+.content-section.map {
   width: 100%;
 
-  #svgcanvas {
-    // background-color: lighten($color-header-background, 5%);
-    display: block;
-    height: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+  .section-content { height: 100%; }
 
-    g.map-group {
+  .overlay-svg { stroke: $color-map-green;  }
+
+  #svgcanvas {
+    display: block;
+    @include size(100%);
+
+    .map-group {
       @include transform-origin(25% 50%);
       @include media($big) { @include animation(zoom-out 5s ease-in-out 10s both); }
+      @include media($small) { @include transform(scale(.6) translateX(-300px)); }
     }
 
     &:hover { cursor: -webkit-grab; }
     &:active { cursor: -webkit-grabbing; }
+
   }
 
   #text path { fill: $color-text; }
-}
-
-.content-section.map {
-  @include media($big) { height: 60vh; }
-  @include media($medium) { height: 650px; }
-  @include media($small) { height: 600px; }
-
-  .overlay-svg { stroke: $color-map-green;  }
 }

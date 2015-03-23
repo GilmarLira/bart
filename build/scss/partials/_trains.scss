@@ -11,15 +11,16 @@
   .overlay-svg {  stroke: $color-map-red;  }
 
   .section-content {
-    @include position(1rem 0 0 0);
-    @include media($medium) { @include position(2rem 0 0 0); }
+    @include media($big) {    @include position(8rem 0 0 0); }
+    @include media($medium) { @include position(4rem 0 0 0); }
+    @include media($small) { @include position(4rem 0 0 0); }
   }
 
   .item-car {
     height: 6rem;
     overflow: hidden;
     @include clearfix;
-    @include margins(0, 1);
+    @include margins(0, 2);
     @include media($small) { height: 16rem; @include margins(0, 5); }
     &:last-child { @include margins;}
   }
@@ -51,7 +52,6 @@
     @include media($medium) {
       line-height: 6rem;
       @include span-columns(2.5 of 14);
-      // @include shift(1);
     }
 
     @include media($small) {

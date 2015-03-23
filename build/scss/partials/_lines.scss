@@ -9,14 +9,15 @@
   @include transform-style(preserve-3d);
   @include transform-origin(50% 50%);
   @include media($big) { @include perspective(1800px); }
-  @include media($medium) { @include perspective(2400px); }
+  @include media($medium) { @include perspective(2400px);  }
   @include media($small) { @include perspective(2400px); }
 
   .overlay-svg {  stroke: $color-map-yellow;  }
 
   .section-content {
     @include clearfix;
-    @include media($medium) { @include position(2rem 0 0 0); }
+    @include position(15% 0 0 0);
+    @include media($medium) { @include position(5rem 0 0 0); }
   }
 
   .list {
@@ -32,7 +33,7 @@
 
     &.explode {
       @include media($big) { @include transform(rotateY(-30deg)); }
-      @include media($medium) { @include transform(rotateX(-10deg) rotateY(-30deg) translateX(200px)); }
+      @include media($medium) { @include transform(rotateX(-10deg) rotateY(-30deg) translateX(220px)); }
       @include media($small) { @include transform(rotateX(-30deg) rotateY(-30deg) translateX(100px)); }
       // todo: include pulse animation
 

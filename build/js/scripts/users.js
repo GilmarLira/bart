@@ -8,15 +8,6 @@ jQuery(document).ready(function(){
 	var containerWidth = window.innerWidth;
 	var containerHeight = window.innerHeight;
 
-	// var ratio;
-	//
-	// if (containerWidth < 480) { ratio = .25; }
-	// else if (containerWidth > 480 && containerWidth < 1024 ) { ratio = .42; }
-	// else if (containerWidth > 1024 ) { ratio = .55; }
-
-	// console.log("width: " + $("#user-stats").width());
-
-
 
 	var margin = {left: 40, bottom: 30, graph: 4},
 	    width = $("#user-stats").width() - margin.left,
