@@ -34,69 +34,70 @@ $font-miso-light: 'miso-light', sans-serif;
 $font-miso-regular: 'miso-regular', sans-serif;
 $font-miso-bold: 'miso-bold', sans-serif;
 
-$font-body-size				: 32px;
+$font-body-size				: 16px;
 $font-body-line				: 1;
-$scale-factor					: 1.618;
+$scale-factor					: 1.5;
 
 @mixin typeface-miso-light { font-family: $font-miso-light; }
 @mixin typeface-miso-regular { font-family: $font-miso-regular; }
 @mixin typeface-miso-bold { font-family: $font-miso-bold; }
 
-html { @include rhythm(0); }
+html { @include rhythm(1); }
 
 body {
   color: $color-text;
   text-transform: uppercase;
-
-  @include typeface-miso-light;
+  @include typeface-miso-regular;
 }
 
 h1,
 .alpha {
   @include typeface-miso-bold;
-  @include rhythm(3, 0, 0);
-  // @include media($medium) { @include rhythm(2, 0, 0); }
+  @include rhythm(5);
+  @include media($small) { @include rhythm(3); }
 }
 
 h2,
 .beta {
   @include typeface-miso-bold;
-  @include rhythm(4);
-  @include media($medium) { @include rhythm(2, 0, 0); }
+  @include rhythm(6);
+  @include media($medium) { @include rhythm(4); }
+  @include media($small) { @include rhythm(2); }
 }
 
 h3,
 .gamma {
   @include typeface-miso-bold;
-  @include rhythm(2);
-  // @include media($medium) { @include rhythm(0, 0, .5); }
+  @include rhythm(4);
 }
 
 h4,
 .delta {
   @include typeface-miso-bold;
-  @include rhythm(4, 0, 0);
-  @include media($medium) { @include rhythm(4, 0, 0); }
+  @include rhythm(6);
+  @include media($medium) { @include rhythm(5); }
+  @include media($small) { @include rhythm(4); }
 }
 
 h5,
 .epsilon {
   @include typeface-miso-regular;
-  @include rhythm(-1, 0, 0);
+  @include rhythm(0);
+  @include media($small) { @include rhythm(-1); }
 }
 
 h6,
 .zeta {
   @include typeface-miso-light;
-  @include rhythm(-1, 0, 0);
+  @include rhythm(-1);
 }
 
 p,
 ul,
 ol {
-  @include rhythm(0, 0, 1);
-  // @include media($medium) { @include rhythm(1, 0, .5); }
-	// @include media($small) { @include rhythm(0, 0, .5); }
+  @include rhythm(1, 0, 1);
+  // @include media($medium) { @include rhythm(.5); }
+  @include media($small) { @include rhythm(1); }
 }
 
 //

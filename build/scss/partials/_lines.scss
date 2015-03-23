@@ -10,6 +10,7 @@
   @include transform-origin(50% 50%);
   @include media($big) { @include perspective(1800px); }
   @include media($medium) { @include perspective(2400px); }
+  @include media($small) { @include perspective(2400px); }
 
   .overlay-svg {  stroke: $color-map-yellow;  }
 
@@ -19,23 +20,20 @@
   }
 
   .list {
-
-    // height: 17rem;
-
     @include margins;
     @include transition(all .5s ease);
     @include transform-style(preserve-3d);
     @include transform(rotateY(0) translateX(0) translateZ(0));
     @include media($big) { @include span-columns(6 of 12); @include shift(4); }
     @include media($medium) { @include span-columns(6 of 12); @include shift(5); }
-    @include media($small) { @include span-columns(6 of 8); }
-
+    @include media($small) { @include span-columns(8 of 14); @include shift(6); }
 
     &:hover { @include media($big) { cursor: pointer; @include transform(rotateY(-30deg)); } }
 
     &.explode {
       @include media($big) { @include transform(rotateY(-30deg)); }
-      @include media($medium) { @include transform(rotateY(-30deg) translateX(100px)); }
+      @include media($medium) { @include transform(rotateX(-10deg) rotateY(-30deg) translateX(200px)); }
+      @include media($small) { @include transform(rotateX(-30deg) rotateY(-30deg) translateX(100px)); }
       // todo: include pulse animation
 
 
@@ -58,6 +56,13 @@
           &:nth-child(2) { @include transform(translateZ(550px)); }
           &:nth-child(1) { @include transform(translateZ(800px)); }
         }
+
+        @include media($small) {
+          &:nth-child(4) { @include transform(translateZ(150px)); }
+          &:nth-child(3) { @include transform(translateZ(250px)); }
+          &:nth-child(2) { @include transform(translateZ(350px)); }
+          &:nth-child(1) { @include transform(translateZ(450px)); }
+        }
       }
     }
   }
@@ -70,8 +75,8 @@
     @include position(absolute);
     @include transition(all .5s ease);
     @include media($big) { @include size(15rem); @include paddings(3, 1); }
-    @include media($medium) { @include size(12rem); @include paddings(2); }
-    @include media($small) { @include shift(2); }
+    @include media($medium) { @include size(12rem); @include paddings(3); }
+    @include media($small) { @include size(8rem); @include paddings(2); }
 
     &:nth-child(4) { @include transform(translateZ(0)); }
     &:nth-child(3) { @include transform(translateZ(1px)); }
@@ -86,10 +91,15 @@
     .desc {
       @include typeface-miso-bold;
       @include margins;
+      @include media($small) { @include rhythm(0); }
     }
 
     // Kerning the huge numbers
-    &:nth-child(1) { .display .char2 { margin-left: -.25rem; }}
-    &:nth-child(3), &:nth-child(4) { .display .char2 { margin-left: -.5rem; } }
+    @include media($big) {
+      &:nth-child(1) { .display .char2 { margin-left: -.25rem; }}
+      &:nth-child(3), &:nth-child(4) { .display .char2 { margin-left: -.5rem; } }
+    }
+
+    @include media($small) { .display span { margin: 0 !important; }}
   }
 }

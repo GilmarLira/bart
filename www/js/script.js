@@ -12,7 +12,7 @@ var captions = {
 	Gender: ["Male", "Female"],
 	Age: ["13-17", "18-24", "25-34", "35-44", "45-54", "55-64", "65-74", "75+"],
 	Origin: ["Walk", "Taxi", "Motorcycle", "Bike", "Bus/train", "Car"],
-	Income: ["Under $15k", "$15-25k", "$25-50k", "$50-75k", "$75-100k", "$100-150k", "$150-200k", "$200k+"]
+	Income: ["< $15k", "$15-25k", "$25-50k", "$50-75k", "$75-100k", "$100-150k", "$150-200k", "$200k+"]
 };
 
 var stations = [
@@ -393,9 +393,8 @@ function redrawSVG(){
 		lineX1 		= '15%';
 		lineX2 		= '80%';
 		lineY 		= '50%';
-		circleCX	= '15%';
 		textDX		= '28%';
-		textDY		= '72%';
+		textDY		= '75%';
 
 		$(".section-title line.overlay").attr('x1', lineX1);
 		$(".section-title line.overlay").attr('x2', lineX2);
@@ -403,10 +402,10 @@ function redrawSVG(){
 		$(".section-title line.overlay").attr('y2', lineY);
 
 		$(".section-title circle.inner-circle").attr('r', 10);
-		$(".section-title circle.inner-circle").attr('cx', circleCX);
+		$(".section-title circle.inner-circle").attr('cx', lineX1);
 
 		$(".section-title circle.outer-circle").attr('r', 16);
-		$(".section-title circle.outer-circle").attr('cx', circleCX);
+		$(".section-title circle.outer-circle").attr('cx', lineX1);
 
 		$(".section-title text").attr('dx', textDX);
 		$(".section-title text").attr('dy', textDY);
@@ -414,10 +413,9 @@ function redrawSVG(){
 
 	// iPad
 	else if(containerWidth > 480 && containerWidth < 1025 ) {
-		lineX1 		= '11%';
+		lineX1 		= '13%';
 		lineX2 		= '80%';
 		lineY 		= '50%';
-		circleCX	= '11%';
 		textDX		= '24%';
 		textDY		= '82%';
 
@@ -427,10 +425,10 @@ function redrawSVG(){
 		$(".section-title line.overlay").attr('y2', lineY);
 
 		$(".section-title circle.inner-circle").attr('r', 20);
-		$(".section-title circle.inner-circle").attr('cx', circleCX);
+		$(".section-title circle.inner-circle").attr('cx', lineX1);
 
 		$(".section-title circle.outer-circle").attr('r', 32);
-		$(".section-title circle.outer-circle").attr('cx', circleCX);
+		$(".section-title circle.outer-circle").attr('cx', lineX1);
 
 		$(".section-title text").attr('dx', textDX);
 		$(".section-title text").attr('dy', textDY);
@@ -441,9 +439,8 @@ function redrawSVG(){
 		lineX1 	= '16%';
 		lineX2 	= '80%';
 		lineY 	= '50%';
-		circleCX	= '16%';
 		textDX  = '30%';
-		textDY	= '74%';
+		textDY	= '70%';
 
 		$(".section-title line.overlay").attr('x1', lineX1);
 		$(".section-title line.overlay").attr('x2', lineX2);
@@ -451,10 +448,10 @@ function redrawSVG(){
 		$(".section-title line.overlay").attr('y2', lineY);
 
 		$(".section-title circle.inner-circle").attr('r', 64);
-		$(".section-title circle.inner-circle").attr('cx', circleCX);
+		$(".section-title circle.inner-circle").attr('cx', lineX1);
 
 		$(".section-title circle.outer-circle").attr('r', 96);
-		$(".section-title circle.outer-circle").attr('cx', circleCX);
+		$(".section-title circle.outer-circle").attr('cx', lineX1);
 
 		$(".section-title text").attr('dx', textDX);
 		$(".section-title text").attr('dy', textDY);
@@ -483,7 +480,7 @@ jQuery(document).ready(function(){
 
 
 	// "Tracks" Exploding animation
-	$(".list").click(function(){ $(this).toggleClass("explode"); });
+	$(".list-item:first-child").click(function(){ $(this).parent().toggleClass("explode"); });
 
 });
 
@@ -491,6 +488,7 @@ jQuery(document).ready(function(){
 /* Interactions
 /////////////////////////////////////////////////////////////// */
 var index = 0;
+var station = stations[index];
 
 jQuery(document).ready(function(){
 	var containerWidth = window.innerWidth;
@@ -504,9 +502,11 @@ jQuery(document).ready(function(){
 
 	// console.log("width: " + $("#user-stats").width());
 
+
+
 	var margin = {left: 40, bottom: 30, graph: 4},
 	    width = $("#user-stats").width() - margin.left,
-	    height = 150 - margin.bottom,
+	    height = 200 - margin.bottom,
 			duration = 500;
 
 	var graph_gender = d3.select("#user-stats-gender")
@@ -514,7 +514,9 @@ jQuery(document).ready(function(){
 			.attr("class", "user-stats-gender chart")
 			.attr("width", width + margin.left)
 	    .attr("height", height + margin.bottom)
-  	.append("g");
+  	.append("g")
+			.attr("transform", "translate(" + margin.left + "," + 0 + ")");
+
 
 	var graph_age = d3.select("#user-stats-age")
 		.append("svg")
@@ -632,6 +634,18 @@ jQuery(document).ready(function(){
 		.call(y_origin_axis);
 
 
+	var menu_station = d3.select(".menu-station");
+
+	menu_station.selectAll("option")
+		.data(stations)
+		.enter()
+		.append("option")
+		.attr("value", function(d, i) { return i; })
+		.text(function(d) { return d.Station; });
+
+	visualize(index);
+
+
 	// Update graphs
 	function visualize(index){
 		station = stations[index];
@@ -642,7 +656,7 @@ jQuery(document).ready(function(){
 			.attr("class", "update")
 			.transition()
 			.duration(duration)
-			.attr("width", function(d, i){ return i===0 ? "100%" : d +"%"; });
+			.attr("width", function(d, i){ return i===0 ? width : d/100 * width; });
 
 		graph_gender.selectAll("text")
 			.data(stations[index].Gender)
@@ -656,14 +670,14 @@ jQuery(document).ready(function(){
 		graph_gender.selectAll("rect")
 			.data(station.Gender)
 			.enter().append("rect")
-			.attr("width", function(d, i){ return i === 0 ? "100%" : d +"%"; })
+			.attr("width", function(d, i){ return i===0 ? width : d/100 * width; })
 			.attr("height", height + margin.bottom);
 
 	  graph_gender.selectAll("text")
 			.data(station.Gender)
 			.enter().append("text")
 		  .attr("y", "55%")
-		  .attr("x", function(d, i) { return i == 1 ? "5%" : "88%"; })
+		  .attr("x", function(d, i) { return i == 1 ? width * 0.05 : width * 0.88; })
 			.text(function(d) { return d + "%"; });
 
 
@@ -721,6 +735,12 @@ jQuery(document).ready(function(){
 
 	jQuery(".item-station").hover(function(){
 		index = $(this).index();
+		console.log("variable index is now: " + index);
+		visualize(index);
+	});
+
+	jQuery(".menu-station").on("change", function(){
+		index = $(this).val();
 		console.log("variable index is now: " + index);
 		visualize(index);
 	});

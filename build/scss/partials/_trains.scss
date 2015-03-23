@@ -3,10 +3,10 @@
 // ///////////////////////////////////////////////////////////////
 
 .content-section.trains {
-  @include perspective(3000px);
-  @include perspective-origin(12% 35%);
-  @include transform-style(preserve-3d);
-  @include transform-origin(50% 50%);
+  // @include perspective(3000px);
+  // @include perspective-origin(12% 35%);
+  // @include transform-style(preserve-3d);
+  // @include transform-origin(50% 50%);
 
   .overlay-svg {  stroke: $color-map-red;  }
 
@@ -15,151 +15,110 @@
     @include media($medium) { @include position(2rem 0 0 0); }
   }
 
-  .circle-base {
-    background-color: $color-train-circle;
-    border-radius: 50%;
-    overflow: visible;
-
-    @include position(absolute, 0 0 0 0);
-    @include transform(rotateX(80deg) translateZ(10px));
-    @include transform-style(preserve-3d);
-    @include media($big) { @include span-columns(3 of 12); height: 200px; }
-    @include media($medium) { @include span-columns(3 of 12); height: 200px; }
-    @include media($small) { @include span-columns(2 of 8); display: none; height: 140px; }
-
-    &:nth-child(1) {  @include transform(rotateX(80deg) translateY(5px) translateZ(.3rem));  }
-    &:nth-child(2) {  @include transform(scale(.8) rotateX(80deg) translateX(5px) translateY(40px) translateZ(-5.6rem));  }
-    &:nth-child(3) {  @include transform(scale(.8) rotateX(80deg) translateX(3px) translateY(60px) translateZ(-12.3rem));  }
-    &:nth-child(4) {  @include transform(scale(.8) rotateX(80deg) translateX(6px) translateY(100px) translateZ(-18.9rem));  }
-    &:nth-child(5) {  @include transform(scale(.8) rotateX(80deg) translateX(2px) translateY(130px) translateZ(-25.5rem));  }
-
-    .circle-inner {
-      background-color: $color-train-circle;
-      border-radius: 50%;
-      height: 70%;
-      width: 70%;
-
-      @include position(absolute, 15% 15% 0 15%);
-    }
-
-    .circle-outer {
-      background-color: $color-train-circle;
-      border-radius: 50%;
-      height: 160%;
-      width: 160%;
-
-      @include position(absolute, -30% -30% 0 -30%);
-      @include animation(fade-in 1s alternate infinite both);
-    }
-  }
-
-
-
-  .header {
-    @include clearfix;
-    @include margins(3, 0);
-
-    p { @extend .gamma; }
-
-    .huge-text {
-      @include media($big) { @include span-columns(2 of 12); }
-      @include media($medium) { @include span-columns(2 of 12); @include position(0 0 0 -.5rem); }
-      @include media($small) { @include span-columns(1 of 6); @include position(0 0 0 0); }
-    }
-
-    .cars {
-      @include typeface-miso-light;
-      @include media($big) { @include span-columns(2 of 12); @include position(0 0 0 -1.2rem); }
-      @include media($medium) { @include span-columns(2 of 12); @include position(0 0 0 -1rem); }
-      @include media($small) { @include span-columns(2 of 6); @include position(0 0 0 1rem);}
-    }
-
-    .car-text {
-      @include typeface-miso-light;
-      @include media($big) { @include span-columns(6 of 12); }
-      @include media($medium) { @include span-columns(8 of 12); }
-      @include media($small) { @include span-columns(3 of 6); @include position(0 0 0 -.5rem); }
-    }
-  }
-
   .item-car {
+    height: 6rem;
     overflow: hidden;
-    height: 4.4rem;
     @include clearfix;
     @include margins(0, 1);
-    @include media($small) { height: 20rem; @include margins(0, 5); }
+    @include media($small) { height: 16rem; @include margins(0, 5); }
+    &:last-child { @include margins;}
   }
 
   .car.amount {
     @extend .gamma;
-    @include typeface-miso-regular;
+    line-height: 6rem;
     text-align: center;
 
-    @include media($big) { @include span-columns(3 of 12); height: 4.4rem; }
-    @include media($medium) { @include span-columns(3 of 12); height: 4.4rem; }
-    @include media($small) { @include span-columns(3 of 6); @include position(2.5rem 0 0 0);
-      line-height: 10rem; font: $font-title; // todo: move to _type
-    }
+    @include typeface-miso-regular;
+    @include media($big) { @include span-columns(3 of 12); height: 6rem; }
+    @include media($medium) { @include span-columns(2.5 of 14); height: 6rem; }
+    @include media($small) { @include span-columns(7 of 14); line-height: 8rem; }
   }
 
   .car.name {
+    @extend .gamma;
+
     background: $color-map-red;
     border-radius: 15%;
     color: #fff;
     text-align: center;
 
-    @extend .gamma;
-
     @include media($big) {
-      // height: 4.4rem;
-      line-height: 4.4rem;
-
+      line-height: 6rem;
       @include span-columns(2 of 12);
-      @include shift(1);
     }
 
     @include media($medium) {
-      // height: 4.4rem;
-      line-height: 4.4rem;
-
-      @include span-columns(2 of 12);
-      @include shift(1);
+      line-height: 6rem;
+      @include span-columns(2.5 of 14);
+      // @include shift(1);
     }
 
     @include media($small) {
-      font: $font-title;
-      line-height: 10rem;
-
-      @include span-columns(3 of 6);
+      line-height: 8rem;
+      @include span-columns(7 of 14);
       @include omega;
     }
   }
 
   .car.desc {
-    @extend .epsilon;
     @include margins;
-
+    @include omega;
     @include media($big) {
-      // height: 4.4rem;
-
       @include span-columns(6 of 12);
       @include paddings(.5, 0);
     }
 
     @include media($medium) {
-      // height: 4.4rem;
-
-      @include span-columns(6 of 12);
+      @include span-columns(9 of 14);
       @include paddings(.5, 0);
     }
 
     @include media($small) {
       clear: left;
-      font: $font-subheader;
-      height: 10rem;
-
-      @include span-columns(6 of 6);
-      @include paddings(1, 0);
+      height: 8rem;
+      @include rhythm(1);
+      @include fill-parent;
+      @include paddings(2, 0);
     }
   }
+
+  // .circle-base {
+  //   background-color: $color-train-circle;
+  //   border-radius: 50%;
+  //   overflow: visible;
+  //
+  //   @include position(absolute, 0 0 0 0);
+  //   @include transform(rotateX(80deg) translateZ(10px));
+  //   @include transform-style(preserve-3d);
+  //   @include media($big) { @include span-columns(3 of 12); height: 200px; }
+  //   @include media($medium) { @include span-columns(3 of 12); height: 200px; }
+  //   @include media($small) { @include span-columns(2 of 8); display: none; height: 140px; }
+  //
+  //   &:nth-child(1) {  @include transform(rotateX(80deg) translateY(5px) translateZ(.3rem));  }
+  //   &:nth-child(2) {  @include transform(scale(.8) rotateX(80deg) translateX(5px) translateY(40px) translateZ(-5.6rem));  }
+  //   &:nth-child(3) {  @include transform(scale(.8) rotateX(80deg) translateX(3px) translateY(60px) translateZ(-12.3rem));  }
+  //   &:nth-child(4) {  @include transform(scale(.8) rotateX(80deg) translateX(6px) translateY(100px) translateZ(-18.9rem));  }
+  //   &:nth-child(5) {  @include transform(scale(.8) rotateX(80deg) translateX(2px) translateY(130px) translateZ(-25.5rem));  }
+  //
+  //   .circle-inner {
+  //     background-color: $color-train-circle;
+  //     border-radius: 50%;
+  //     height: 70%;
+  //     width: 70%;
+  //
+  //     @include position(absolute, 15% 15% 0 15%);
+  //   }
+  //
+  //   .circle-outer {
+  //     background-color: $color-train-circle;
+  //     border-radius: 50%;
+  //     height: 160%;
+  //     width: 160%;
+  //
+  //     @include position(absolute, -30% -30% 0 -30%);
+  //     @include animation(fade-in 1s alternate infinite both);
+  //   }
+  // }
+
 }

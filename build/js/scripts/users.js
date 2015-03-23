@@ -2,6 +2,7 @@
 /* Interactions
 /////////////////////////////////////////////////////////////// */
 var index = 0;
+var station = stations[index];
 
 jQuery(document).ready(function(){
 	var containerWidth = window.innerWidth;
@@ -15,9 +16,11 @@ jQuery(document).ready(function(){
 
 	// console.log("width: " + $("#user-stats").width());
 
+
+
 	var margin = {left: 40, bottom: 30, graph: 4},
 	    width = $("#user-stats").width() - margin.left,
-	    height = 150 - margin.bottom,
+	    height = 200 - margin.bottom,
 			duration = 500;
 
 	var graph_gender = d3.select("#user-stats-gender")
@@ -25,7 +28,9 @@ jQuery(document).ready(function(){
 			.attr("class", "user-stats-gender chart")
 			.attr("width", width + margin.left)
 	    .attr("height", height + margin.bottom)
-  	.append("g");
+  	.append("g")
+			.attr("transform", "translate(" + margin.left + "," + 0 + ")");
+
 
 	var graph_age = d3.select("#user-stats-age")
 		.append("svg")
@@ -143,6 +148,18 @@ jQuery(document).ready(function(){
 		.call(y_origin_axis);
 
 
+	var menu_station = d3.select(".menu-station");
+
+	menu_station.selectAll("option")
+		.data(stations)
+		.enter()
+		.append("option")
+		.attr("value", function(d, i) { return i; })
+		.text(function(d) { return d.Station; });
+
+	visualize(index);
+
+
 	// Update graphs
 	function visualize(index){
 		station = stations[index];
@@ -153,7 +170,7 @@ jQuery(document).ready(function(){
 			.attr("class", "update")
 			.transition()
 			.duration(duration)
-			.attr("width", function(d, i){ return i===0 ? "100%" : d +"%"; });
+			.attr("width", function(d, i){ return i===0 ? width : d/100 * width; });
 
 		graph_gender.selectAll("text")
 			.data(stations[index].Gender)
@@ -167,14 +184,14 @@ jQuery(document).ready(function(){
 		graph_gender.selectAll("rect")
 			.data(station.Gender)
 			.enter().append("rect")
-			.attr("width", function(d, i){ return i === 0 ? "100%" : d +"%"; })
+			.attr("width", function(d, i){ return i===0 ? width : d/100 * width; })
 			.attr("height", height + margin.bottom);
 
 	  graph_gender.selectAll("text")
 			.data(station.Gender)
 			.enter().append("text")
 		  .attr("y", "55%")
-		  .attr("x", function(d, i) { return i == 1 ? "5%" : "88%"; })
+		  .attr("x", function(d, i) { return i == 1 ? width * 0.05 : width * 0.88; })
 			.text(function(d) { return d + "%"; });
 
 
@@ -232,6 +249,12 @@ jQuery(document).ready(function(){
 
 	jQuery(".item-station").hover(function(){
 		index = $(this).index();
+		console.log("variable index is now: " + index);
+		visualize(index);
+	});
+
+	jQuery(".menu-station").on("change", function(){
+		index = $(this).val();
 		console.log("variable index is now: " + index);
 		visualize(index);
 	});

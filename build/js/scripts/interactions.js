@@ -79,9 +79,8 @@ function redrawSVG(){
 		lineX1 		= '15%';
 		lineX2 		= '80%';
 		lineY 		= '50%';
-		circleCX	= '15%';
 		textDX		= '28%';
-		textDY		= '72%';
+		textDY		= '75%';
 
 		$(".section-title line.overlay").attr('x1', lineX1);
 		$(".section-title line.overlay").attr('x2', lineX2);
@@ -89,10 +88,10 @@ function redrawSVG(){
 		$(".section-title line.overlay").attr('y2', lineY);
 
 		$(".section-title circle.inner-circle").attr('r', 10);
-		$(".section-title circle.inner-circle").attr('cx', circleCX);
+		$(".section-title circle.inner-circle").attr('cx', lineX1);
 
 		$(".section-title circle.outer-circle").attr('r', 16);
-		$(".section-title circle.outer-circle").attr('cx', circleCX);
+		$(".section-title circle.outer-circle").attr('cx', lineX1);
 
 		$(".section-title text").attr('dx', textDX);
 		$(".section-title text").attr('dy', textDY);
@@ -100,10 +99,9 @@ function redrawSVG(){
 
 	// iPad
 	else if(containerWidth > 480 && containerWidth < 1025 ) {
-		lineX1 		= '11%';
+		lineX1 		= '13%';
 		lineX2 		= '80%';
 		lineY 		= '50%';
-		circleCX	= '11%';
 		textDX		= '24%';
 		textDY		= '82%';
 
@@ -113,10 +111,10 @@ function redrawSVG(){
 		$(".section-title line.overlay").attr('y2', lineY);
 
 		$(".section-title circle.inner-circle").attr('r', 20);
-		$(".section-title circle.inner-circle").attr('cx', circleCX);
+		$(".section-title circle.inner-circle").attr('cx', lineX1);
 
 		$(".section-title circle.outer-circle").attr('r', 32);
-		$(".section-title circle.outer-circle").attr('cx', circleCX);
+		$(".section-title circle.outer-circle").attr('cx', lineX1);
 
 		$(".section-title text").attr('dx', textDX);
 		$(".section-title text").attr('dy', textDY);
@@ -127,9 +125,8 @@ function redrawSVG(){
 		lineX1 	= '16%';
 		lineX2 	= '80%';
 		lineY 	= '50%';
-		circleCX	= '16%';
 		textDX  = '30%';
-		textDY	= '74%';
+		textDY	= '70%';
 
 		$(".section-title line.overlay").attr('x1', lineX1);
 		$(".section-title line.overlay").attr('x2', lineX2);
@@ -137,10 +134,10 @@ function redrawSVG(){
 		$(".section-title line.overlay").attr('y2', lineY);
 
 		$(".section-title circle.inner-circle").attr('r', 64);
-		$(".section-title circle.inner-circle").attr('cx', circleCX);
+		$(".section-title circle.inner-circle").attr('cx', lineX1);
 
 		$(".section-title circle.outer-circle").attr('r', 96);
-		$(".section-title circle.outer-circle").attr('cx', circleCX);
+		$(".section-title circle.outer-circle").attr('cx', lineX1);
 
 		$(".section-title text").attr('dx', textDX);
 		$(".section-title text").attr('dy', textDY);
@@ -169,6 +166,6 @@ jQuery(document).ready(function(){
 
 
 	// "Tracks" Exploding animation
-	$(".list").click(function(){ $(this).toggleClass("explode"); });
+	$(".list-item:first-child").click(function(){ $(this).parent().toggleClass("explode"); });
 
 });

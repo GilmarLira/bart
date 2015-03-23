@@ -11,24 +11,28 @@
     @include media($medium) { @include position(2rem 0 0 0); }
   }
 
+  .menu-station { display: none; @include media($small) { display: block; @include fill-parent; @include margins(0, 2); } }
+
   .list-user-stats {
-    @include media($big) { @include span-columns(9 of 12); }
-    @include media($medium) { @include span-columns(10 of 12); @include shift(-1); }
-    @include media($small) { @include span-columns(6 of 6); }
+    @include media($big) { @include span-columns(9 of 12); @include shift(-1);}
+    @include media($medium) { @include span-columns(10 of 14); @include shift(-.5);  }
+    @include media($small) { @include span-columns(15 of 14); @include shift(-1); @include omega; }
     @include margins(0, 1);
   }
 
   .item-user-stats {
     @include clearfix;
-    @include margins(0, 2);
+    @include margins(0, 1);
+    @include media($medium) { @include margins(0, 4); }
 
-    &:last-child { @include margins(0, 0); }
+    &:last-child { @include margins; }
+    p { @include media($small) { padding-left: 1.1rem; } }
   }
 
   div.chart {
     @include media($big) { @include span-columns(9 of 9); }
-    @include media($medium) { @include span-columns(9 of 9); }
-    @include media($small) { @include span-columns(6 of 6); }
+    @include media($medium) { @include span-columns(10 of 10);}
+    @include media($small) { @include span-columns(15 of 15); @include omega; }
   }
 
   svg.chart {
@@ -36,6 +40,8 @@
 
     @include fill-parent;
     @include margins;
+    @include media($medium) { @include span-columns(10 of 10);}
+    @include media($small) { @include span-columns(15 of 15); @include omega; }
 
     line { stroke: $color-chart-ticks; }
 
@@ -53,7 +59,7 @@
 
     &.user-stats-age,
     &.user-stats-origin,
-    &.user-stats-income { @extend .zeta; fill: $color-text; }
+    &.user-stats-income { @extend .epsilon; fill: $color-text; }
   }
 
   .axis {
@@ -68,34 +74,34 @@
 
 
 .station-nav {
-  @include span-columns(3 of 12);
+  @include media($big) {    @include span-columns(3 of 12); @include shift(1); }
+  @include media($medium) { @include span-columns(4.5 of 14); }
+  @include media($small) {  @include fill-parent; }
   @include omega;
-  @include media($small) { display: none; }
+
 
   .list-station {
-    @extend .epsilon;
-    // @include typeface-miso-light;
     text-align: right;
+    @include media($medium) { font-size: .875rem;  }
+    @include media($small) {  display: none; }
 
     .item-station {
       height: 1.2em;
       line-height: 1em;
       overflow: hidden;
+      @include media($medium) { margin: .125em 0; }
     }
 
     .station {
+      border-radius: .6em;
       display: block;
       height: 1.2em;
-      padding: .1em .5em .1em .25em;
-      padding-left: .25em;
-      padding-right: .5em;
       margin: 0;
-      border-radius: .6em;
+      padding: .1em .5em .1em .25em;
 
       &:hover {
         background-color: $color-map-orange;
         color: $color-header-background;
-        // color: $color-map-orange;
         cursor: pointer;
       }
     }
