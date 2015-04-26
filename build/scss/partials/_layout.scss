@@ -7,23 +7,20 @@
 html { height: 100%; }
 
 body {
-  background: $color-header-background;
-  color: darken($color-header, 20%);
-  -webkit-tap-highlight-color: transparent;
-
   @include position;
   @include transition(transform 1s ease);
+  @include user-select(none);
   // @include media($big) { background: url('../img/background.svg') center top / cover no-repeat $color-header-background; }
   // @include media($medium) { background: url('../img/background-ipad.svg') center top / cover no-repeat $color-header-background; }
   // @include media($small) { background: url('../img/background-iphone.svg') center 20% / 320% no-repeat $color-header-background;  }
-  @include user-select(none);
+  background: $color-header-background;
+  color: darken($color-header, 20%);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .placeholder { background-color: $color-placeholder; }
 
 .wrapper {
-  // overflow: hidden;
-
   @include outer-container;
   @include position;
 
@@ -43,60 +40,50 @@ body {
   @include media($small) { @include span-columns(14 of 14); @include omega; }
 
   .section-header {
-    z-index: 100;
-
     @include transform(translateZ(1px));
     @include position(-webkit-sticky, 0 0);
     @include position(sticky, 0 0 0 0);
     @include omega;
+    z-index: 100;
 
     @include media($big) {
-      height: 11rem;
       @include span-columns(12 of 12);
       @include shift(-4);
       @include margins(1, 0);
+      height: 11rem;
     }
 
     @include media($medium) {
-      height: 4rem;
       @include span-columns(8 of 14);
       @include shift(-1);
       @include paddings(1, 0);
+      height: 4rem;
     }
 
     @include media($small) {
-      height: 2.5rem;
       @include span-columns(8 of 14);
       @include shift(-1);
       @include paddings(1, 0);
+      height: 2.5rem;
     }
 
 
     .section-title,
     .overlay-svg {
-      height: 100%;
-
       @include fill-parent();
+      height: 100%;
     }
 
     .overlay {
-      stroke-linecap: round;
-
       @include media($big) { stroke-width: 256px;  }
       @include media($medium) { stroke-width: 80px;  }
       @include media($small) { stroke-width: 40px; }
+      stroke-linecap: round;
     }
 
     text {
       fill: $color-header-background;
       stroke: none;
-
-      //todo: move this to _type
-      // @include media($medium) { @include rhythm(2, 0, 0); }
-      // @include media($small) {
-      //   font: $font-header;
-      //   font-family: miso-bold;
-      // }
     }
 
     .outer-circle { fill: $color-header-background; stroke: none; }
@@ -104,8 +91,8 @@ body {
   }
 
   .section-content {
-    clear: left;
     @include fill-parent;
+    clear: left;
   }
 }
 
@@ -117,11 +104,16 @@ body {
     @extend .epsilon;
 
     padding-right: .5em;
-    text-align: right;
+    text-align: center;
+    word-spacing: 1px;
 
     @include margins(2, 1);
     @include media($big) {  @include fill-parent; }
     @include media($medium) { padding-right: .5rem; @include span-columns(16 of 16);  }
     @include media($small) { @include shift(-1); }
   }
+
+  a,
+  a:visited,
+  a:active { text-decoration: underline; color: $color-header; }
 }
